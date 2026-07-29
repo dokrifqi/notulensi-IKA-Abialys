@@ -4,6 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Notulensi PPDS IKA – Angkatan Pak Hilal</title>
+
+<!-- PWA -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#7B2D3E">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Notulensi IKA">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -19,6 +29,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--tx);mi
 .hdr-in{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 15px}
 .htitle{font-family:'Fraunces',serif;font-size:.95rem;font-weight:700;color:#fff;line-height:1.2}
 .hsub{font-size:.67rem;color:var(--gl)}
+.drive-btn{display:inline-flex;align-items:center;gap:5px;margin-top:5px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);color:#fff;font-family:'DM Sans',sans-serif;font-size:.66rem;font-weight:600;padding:4px 10px;border-radius:20px;text-decoration:none;transition:background .2s}
+.drive-btn:hover{background:rgba(255,255,255,.26)}
 .badge{background:var(--gold);color:#fff;font-size:.62rem;font-weight:600;padding:3px 8px;border-radius:20px;white-space:nowrap}
 .nav{background:var(--ml);display:flex;overflow-x:auto;scrollbar-width:none}
 .nav::-webkit-scrollbar{display:none}
@@ -72,6 +84,35 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--tx);mi
 .copy-btn:hover{background:var(--m);color:#fff;border-color:var(--m)}
 .copy-btn.copied{background:var(--gr);color:#fff;border-color:var(--gr)}
 .ir-body{background:var(--cream);border:1px dashed var(--gl);border-radius:8px;padding:11px 12px;font-size:.78rem;line-height:1.7;white-space:pre-wrap;color:var(--tx)}
+.pnpk-item{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 4px;border-bottom:1px solid var(--cd)}
+.pnpk-item:last-child{border-bottom:none}
+.pnpk-name{font-size:.8rem;line-height:1.45;color:var(--tx)}
+.pnpk-year{font-size:.66rem;color:var(--tm)}
+.dl-btn{flex-shrink:0;display:flex;align-items:center;gap:5px;background:var(--m);color:#fff;font-family:'DM Sans',sans-serif;font-size:.68rem;font-weight:600;padding:7px 13px;border-radius:20px;text-decoration:none;white-space:nowrap}
+.dl-btn:hover{background:var(--ml)}
+.dl-btn.disabled{background:var(--cd);color:var(--tm);pointer-events:none}
+.contact-item{padding:10px 4px;border-bottom:1px solid var(--cd)}
+.contact-item:last-child{border-bottom:none}
+.contact-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.contact-name{font-family:'Fraunces',serif;font-weight:700;font-size:.86rem;color:var(--m);display:flex;align-items:center;gap:7px}
+.contact-num{font-size:.68rem;color:var(--tm)}
+.contact-num a{color:var(--gr);text-decoration:none;font-weight:600}
+.call-btn{flex-shrink:0;display:flex;align-items:center;gap:4px;background:var(--gr);color:#fff;font-size:.66rem;font-weight:600;padding:6px 11px;border-radius:20px;text-decoration:none;white-space:nowrap}
+.wa-btn{background:#25D366}
+.bio-item{border-bottom:1px solid var(--cd)}
+.bio-item:last-child{border-bottom:none}
+.bio-head{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px 4px;cursor:pointer}
+.bio-head-left{display:flex;align-items:center;gap:10px}
+.bio-num{width:26px;height:26px;border-radius:50%;background:var(--m);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;flex-shrink:0}
+.bio-nick{font-family:'Fraunces',serif;font-weight:700;font-size:.88rem;color:var(--m)}
+.bio-chevron{font-size:.7rem;color:var(--tm);transition:transform .25s}
+.bio-item.open .bio-chevron{transform:rotate(180deg)}
+.bio-detail{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.bio-item.open .bio-detail{max-height:400px}
+.bio-detail-in{padding:0 4px 14px 40px}
+.bio-row{font-size:.78rem;line-height:1.9;color:var(--tx)}
+.bio-row b{color:var(--tm);font-weight:600}
+.bio-row a{color:var(--gr);text-decoration:none;font-weight:600}
 
 </style>
 </head>
@@ -81,11 +122,13 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--tx);mi
     <div>
       <div class="htitle">Notulensi PPDS IKA</div>
       <div class="hsub">Angkatan Pak Hilal · Juli 2026</div>
+      <a class="drive-btn" href="https://drive.google.com/drive/folders/1NW-Iwt-7KrMbo42D0JPlEhik-QdKEezi?usp=sharing" target="_blank" rel="noopener">📁 Buka Google Drive</a>
     </div>
     <div class="badge">10 Orang</div>
   </div>
   <div class="nav" id="navBar">
-    <button class="nb active" onclick="showSec('kuvs',this)">🎒 Perlengkapan</button>
+    <button class="nb active" onclick="showSec('biodata',this)">👤 BioData</button>
+    <button class="nb" onclick="showSec('kuvs',this)">🎒 Perlengkapan</button>
     <button class="nb" onclick="showSec('obat',this)">💊 Obat Pribadi</button>
     <button class="nb" onclick="showSec('ringkasan',this)">✅ Checklist</button>
     <button class="nb" onclick="showSec('sabtu18',this)">Sab 18 Jul</button>
@@ -93,16 +136,28 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--tx);mi
     <button class="nb" onclick="showSec('selasa21',this)">Sel 21 Jul</button>
     <button class="nb" onclick="showSec('jumat24',this)">Jum 24 Jul</button>
     <button class="nb" onclick="showSec('pertemuan26',this)">Sab 26 Jul</button>
+    <button class="nb" onclick="showSec('rabu29jul',this)">Rab 29 Jul</button>
     <button class="nb" onclick="showSec('angkatan',this)">List Angkatan</button>
     <button class="nb" onclick="showSec('abyalis',this)">📷 Abyalis</button>
     <button class="nb" onclick="showSec('ir',this)">📄 IR</button>
+    <button class="nb" onclick="showSec('pnpk',this)">📚 PNPK</button>
+    <button class="nb" onclick="showSec('kontak',this)">📞 Kontak Darurat</button>
   </div>
 </div>
 
 <div class="main">
 
 <!-- ===== PERLENGKAPAN KUVS ===== -->
-<div class="sec active" id="kuvs">
+<!-- ===== BIODATA ANGGOTA ===== -->
+<div class="sec active" id="biodata">
+  <p class="sl">BioData Anggota — Angkatan Pak Hilal</p>
+  <div class="hlb" style="margin-bottom:12px">Tap nama untuk melihat biodata lengkap.</div>
+  <div class="card">
+    <div id="biodataArea"></div>
+  </div>
+</div>
+
+<div class="sec" id="kuvs">
   <p class="sl">Perlengkapan Wajib Residen Junior (KUVS)</p>
   <div class="progress-wrap">
     <div class="progress-top">
@@ -512,6 +567,137 @@ Wassalamualaikum warahmatullahi wabarakatuh</div>
   </div>
 </div>
 
+<!-- ===== RABU 29 JULI ===== -->
+<div class="sec" id="rabu29jul">
+  <p class="sl">Rabu, 29 Juli 2026</p>
+
+  <div class="card">
+    <div class="ctitle"><span class="icon">📖</span>Kewajiban Ilmiah — Jurnal Reading</div>
+    <ul class="kl">
+      <li>Setelah pengayaan, ada kocokan pembimbing Jurnal Reading 1 (podium) dan Jurnal Reading 2 (non-podium), serta bahasan jurnal (diagnostik, terapi, dll) — dikoordinasikan bersama Mbak Tyas.</li>
+      <li>Cari 5 jurnal sesuai subspesialis sesuai hasil kocokan.</li>
+      <li>Ajukan judul ke Mas Joko (konfirmasi judul belum pernah dipakai).</li>
+      <li>Sebelum mengajukan ke SPV, tanya dulu ke grup Abyalis — siapa yang sudah pernah maju jurding dengan SPV tersebut.</li>
+      <li>Ajukan ke SPV minimal 5 judul.</li>
+      <li>Tanda tangan lembar ACC dan monitoring.</li>
+      <li>Email lembar ACC ke <strong>ilmiahppdsika2@gmail.com</strong>, lalu konfirmasi ke Mas Joko.</li>
+      <li>Tergantung pembimbing — mau dikonsul dulu atau langsung maju jurnal.</li>
+      <li>Jurnal Reading 1 dan SKY sudah terjadwal — siap tidak siap harus tetap maju.</li>
+      <li>Jurnal Reading 2 lebih baik direncanakan sendiri oleh masing-masing PPDS.</li>
+      <li>Jadwal maju jurnal dikoordinasikan COA (Bu Uli) — jurding podium ditonton residen lain; jurding non-podium hanya presentasi ke SPV saja.</li>
+      <li>Buat PPT, konsul ke senior (pin biru) sesuai stase yang sedang dijalani.</li>
+      <li>Jika senior di stase yang sama sedang sibuk, baru boleh konsul ke senior stase lain.</li>
+      <li>Konsul senior sebaiknya langsung; jika senior stase lain yang dituju sedang sibuk, hubungi via WA dulu sebelum konsul langsung.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="ctitle"><span class="icon">🧾</span>SKY (Studi Kasus Junior)</div>
+    <ul class="kl">
+      <li>Kocokan SPV SKY dikoordinasikan bersama Mbak Tyas.</li>
+      <li>Hubungi Senior/Madya yang sedang stase di SPV hasil kocokan.</li>
+      <li>Boleh tanya senior/madya stase tersebut setiap bulan.</li>
+      <li>SPV biasanya menyukai kasus penegakan diagnosis.</li>
+      <li>Jika sudah dapat kasus, minta TTD ACC dan monitoring kasus.</li>
+      <li>Laporkan ke COA tentang kasus SKY yang didapat.</li>
+      <li>Isi link G-Form disertai lembar ACC kasus.</li>
+      <li>Buat makalah (sudah ada formatnya) dan PPT.</li>
+      <li>Tinjauan pustaka (teori) dibandingkan dengan kasus yang didapat.</li>
+      <li>Konsul ke senior stase terkait, maksimal 10 hari sebelum maju SKY.</li>
+      <li>Konsultasi berkala dengan SPV.</li>
+      <li>Cek Turnitin ke Mbak Beta (lebih cepat); jika sudah ACC, minta TTD dr. Hari — similarity minimal 20% khusus bagian analisis kasus.</li>
+      <li>Jadwal maju ditentukan COA (diumumkan di papan/dinding hijau) — dapat berubah sewaktu-waktu, jadi begitu ACC kasus keluar segera buat makalah & PPT agar siap maju sesuai jadwal.</li>
+    </ul>
+    <div class="subhead">Timeline Persiapan Maju SKY</div>
+    <div class="hl">
+      <strong>H-7:</strong> Matur ke staff, serahkan makalah ke SPV penguji, pembimbing, dan Mas Joko (kadang staff minta email atau hardcopy makalah) & kirim email ke penguji dan pembimbing.<br>
+      <strong>H-3:</strong> WA ke penguji, pembimbing, dan moderator — kirim link Zoom (didapat dari Mas Joko).<br>
+      <strong>H-1:</strong> WA mengingatkan penguji, pembimbing, dan moderator; jam 16.00–17.00 kirim link Zoom ke grup prodi.<br>
+      Setelah maju, tinggal menunggu nilai, revisi, atau tugas tambahan.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ctitle"><span class="icon">🌙</span>CC (Case Conference) & Jadwal Jaga</div>
+    <ul class="kl">
+      <li>Jadwal jaga dibuat COA di awal bulan, dapat berubah sewaktu-waktu.</li>
+      <li>Jaga bawah paling sering absen adalah jaga 9 dan 10.</li>
+    </ul>
+    <div class="subhead">Aturan CC Berdasarkan Hari</div>
+    <div class="hl">
+      <strong>Senin CC</strong> → harusnya yang jaga Minggu malam; jika kosong, yang maju CC jaga Jumat.<br>
+      <strong>Selasa CC</strong> → harusnya yang jaga Senin malam; jika tidak ada pasien, yang maju CC jaga Sabtu pagi.<br>
+      <strong>Rabu CC</strong> → harusnya yang jaga Selasa malam; jika tidak ada pasien, yang maju CC jaga Sabtu malam.<br>
+      <strong>Kamis CC</strong> → harusnya yang jaga Rabu malam; jika tidak ada pasien, yang maju CC jaga Ahad pagi.<br>
+      SPV jaga Ahad kadang minta yang maju CC Ahad pagi jika jaga Ahad malam tidak ada pasien.
+    </div>
+    <ul class="kl">
+      <li>Jaga NICU/PICU libur itu 24 jam.</li>
+      <li>CC harus konsul ke senior setiap angkatannya.</li>
+    </ul>
+    <div class="subhead">Urutan Nama Jaga (Kiri ke Kanan = Junior ke Senior)</div>
+    <div class="hlb">
+      Jaga 1: Supervisi (lapor ke SPV) · Jaga 2 & 3: IGD (yang maju podium) · Jaga 4: HCU Anak · Jaga 5: Kapten bangsal (Flamboyan 6, 9, bangsal luar) · Jaga 6: Tulip (kemoterapi) · Jaga 7: Bangsal luar negeri · Jaga 8 (bawah): Flamboyan 9.<br>
+      Baris berikutnya: nama jaga PICU (kiri junior, kanan lebih senior) → nama jaga NICU (kiri junior, kanan lebih senior) → paling bawah: nama SPV on call.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ctitle"><span class="icon">📊</span>PAT & Materi CC</div>
+    <ul class="kl">
+      <li>Neonatus tidak memakai PAT.</li>
+      <li>Data diambil dari jaga 2 dan 3; jika tidak ada, cari lewat ERM.</li>
+      <li>PAT wajib ada pada setiap pasien pediatrik. Jika data pasien banyak, boleh dibuat 2–3 slide.</li>
+      <li>Partus dalam (lahir di RSDM, baik normal maupun SC): laporan minta ke jaga NICU, minta SOAP-nya untuk mengisi CC.</li>
+      <li>Setiap kasus dibuat penjabarannya (tinggal copy-paste).</li>
+    </ul>
+    <div class="subhead">Kurva & Grafik yang Digunakan</div>
+    <ul class="kl">
+      <li>Harus bisa plotting kurva WHO.</li>
+      <li>Kurva Fenton — untuk bayi baru lahir & kehamilan aterm.</li>
+      <li>Kurva CDC — untuk pediatri di atas 5 tahun; kurva WHO untuk usia 0–5 tahun.</li>
+      <li>Waterlow — berdasarkan BB sekarang & BB ideal (cari tinggi ideal dulu).</li>
+      <li>IMT — biasanya untuk pasien obesitas/overweight.</li>
+      <li>Kurva Down Syndrome — untuk pasien dengan Down Syndrome.</li>
+      <li>Perawakan pendek — di bawah P5, dicari TPG (Tinggi Potensi Genetik).</li>
+      <li>Kurva bayi baru lahir — untuk kasus partus atau IGD pasien bayi baru lahir.</li>
+      <li>Kurva Nellhaus — untuk mengecek lingkar kepala.</li>
+      <li>Hasil lab dan hasil radiologi wajib dimasukkan.</li>
+      <li>Rawat jalan juga tetap dibuatkan kurva dan materinya.</li>
+      <li>Pasien meninggal cukup dibuat SOAP terakhir saja, tidak perlu dibuat kurva.</li>
+    </ul>
+    <div class="hlb">Materi kasus dimasukkan sesuai kasus yang didapat, biasanya sudah tersedia di drive. Di PPT CC biasanya sudah ada contekan chart-chart.</div>
+  </div>
+
+  <div class="card">
+    <div class="ctitle"><span class="icon">💻</span>ERM & Masa Orientasi</div>
+    <ul class="kl">
+      <li>ERM nanti punya akses masing-masing, akan diajarkan saat pradik.</li>
+      <li>Saat pengayaan dan orientasi, boleh bertanya sampai benar-benar paham sebelum masa orientasi selesai.</li>
+      <li>Bulan November sudah bisa dilepas mandiri.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="ctitle"><span class="icon">📞</span>Konfirmasi Jaga Bawah</div>
+    <ul class="kl">
+      <li>Konfirmasi jaga dilakukan H-1 sebelum jaga, mulai dari jaga 1 sampai jaga 8.</li>
+      <li>Jika bertemu langsung dengan CC, boleh langsung konfirmasi.</li>
+      <li>Jika tidak bertemu, konfirmasi lewat telepon/WA setelah jam ilmiah.</li>
+      <li>Jika konfirmasi di hari libur, boleh mulai jam 10.00.</li>
+      <li>Setelah terkonfirmasi, diposting ke grup jam 16.00–17.00.</li>
+      <li>Jika hari libur dengan 2 jaga (pagi & malam), keduanya diposting bersamaan.</li>
+      <li>Jika salah satu belum bisa dikonfirmasi, minta arahan ke jaga 1.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="ctitle"><span class="icon">🧭</span>Alur Bertanya Saat Orientasi</div>
+    <div class="hl">Tanya ke teman dulu → jika tidak bisa, tanya angkatan Pak Abi → angkatan Pak Jerman → angkatan Pak Chandra → angkatan atasnya lagi.</div>
+    <div class="hlb">Setiap ada hal baru, dicatat dan dikirim ke Google Docs (gdoc) bersama.</div>
+  </div>
+</div>
+
 <!-- ===== LIST ANGKATAN ===== -->
 <div class="sec" id="angkatan">
   <p class="sl">List Perkenalan — Seluruh Angkatan PPDS IKA</p>
@@ -558,6 +744,30 @@ Wassalamualaikum warahmatullahi wabarakatuh</div>
   <p class="sl">IR — Invisible Rule (Template Redaksi)</p>
   <div class="hlb" style="margin-bottom:12px">Kumpulan template redaksi chat/lapor yang wajib diikuti. Tap tombol <strong>Copy</strong> untuk menyalin teks, lalu sesuaikan bagian data diri/tanggal sebelum dikirim.</div>
   <div id="irArea"></div>
+</div>
+
+<!-- ===== PNPK / REFERENSI ===== -->
+<div class="sec" id="pnpk">
+  <p class="sl">PNPK & Konsensus IDAI — Referensi</p>
+  <div class="hlb" style="margin-bottom:12px">Tap tombol <strong>Unduh</strong> untuk membuka/mengunduh PDF resmi dari situs IDAI (idai.or.id). Untuk yang belum tersedia gratis, hanya bisa didapat sebagai buku berbayar via Badan Penerbit IDAI.</div>
+  <div class="card">
+    <div class="ctitle"><span class="icon">📚</span>PNPK Tersedia Gratis</div>
+    <div id="pnpkAvailable"></div>
+  </div>
+  <div class="card">
+    <div class="ctitle"><span class="icon">🔒</span>Hanya Buku Berbayar</div>
+    <div id="pnpkPaid"></div>
+    <div class="hlr" style="margin-top:8px">Belum ada versi PDF gratis resmi di situs IDAI — tersedia sebagai buku via Badan Penerbit IDAI (ebooks.gramedia.com).</div>
+  </div>
+</div>
+
+<!-- ===== KONTAK DARURAT ===== -->
+<div class="sec" id="kontak">
+  <p class="sl">Kontak Darurat — Angkatan Pak Hilal</p>
+  <div class="hlb" style="margin-bottom:12px">Nomor darurat seluruh anggota angkatan. Tap ikon telepon/WA untuk langsung menghubungi.</div>
+  <div class="card">
+    <div id="contactArea"></div>
+  </div>
 </div>
 
 </div>
@@ -1006,6 +1216,40 @@ Mohon arahan dan bimbingannya selalu.` },
 
   { icon:"↩️", title:"IR Menarik Pesan yang Salah Kirim", note:"Jika ada pesan yang salah kirim, langsung dihapus (tarik) terlebih dahulu, setelah itu kirim susulan permintaan maaf berikut.", text:
 `Mohon maaf, Pak, Bu. Izin untuk menarik pesan. Mohon untuk arahannya nggih.` },
+
+  { icon:"🌴", title:"IR Laporan Jaga Saat Libur (Tidak Boleh Terputus)", note:"Saat hari libur, laporan Tim Jaga tetap wajib dikirim setiap hari — tidak boleh terputus meskipun sedang libur.", text:
+`Assalamu'alaikum Wr. Wb. Prof dan Dokter.
+
+Mohon izin melaporkan Tim Jaga Sabtu Malam, 25 Juli 2026.
+
+Supervisor: dr. Pridania Vidya A, Sp.A
+
+Tim Jaga:
+1. dr. Anjar Widarini
+2. dr. Yoga Malanda
+3. dr. Allief Himamana
+4. dr. Dewi Sekarsari
+5. dr. Naufal Aria P.
+6. dr. Elvira Pratiwi
+7. dr Ainin Meisynthia S.
+
+IGD :
+(lengkapi sesuai tim jaga IGD hari itu)
+
+HCU Anak :
+dr. Fuad Adi P.
+
+PICU :
+dr. Iske Lucia G.
+dr. Fahrireza Mahardhika
+
+NICU dan HCU Neo:
+dr. Savina A. Olga M.
+dr. M. Mahmud Ansori
+
+Terima kasih, Prof dan Dokter.
+
+Wassalamu'alaikum Wr. Wb.` },
 ];
 
 function renderIR(){
@@ -1054,6 +1298,296 @@ function fallbackCopy(text, cb){
 }
 
 renderIR();
+
+/* ===== PNPK / REFERENSI ===== */
+const PNPK_AVAILABLE = [
+  { name:"Tata Laksana Epilepsi pada Anak", year:"2017", url:"https://www.idai.or.id/wp-content/uploads/2022/08/pnpk%20epilepsi%202017.pdf" },
+  { name:"Tata Laksana Infeksi Dengue Anak dan Remaja", year:"2021", url:"https://www.idai.or.id/wp-content/uploads/2022/08/pnpk%20dengue%202021.pdf" },
+  { name:"Tata Laksana Thalasemia", year:"2018", url:"https://www.idai.or.id/wp-content/uploads/2022/08/pnpk%20thalasemia%202018.pdf" },
+  { name:"Tata Laksana Hiperbilirubinemia", year:"2019", url:"https://www.idai.or.id/wp-content/uploads/2022/08/pnpk%20hiperbilirubinemia%202019.pdf" },
+  { name:"Tata Laksana HIV", year:"2019", url:"https://www.idai.or.id/wp-content/uploads/2022/08/pnpk%20HIV%202019.pdf" },
+  { name:"Tata Laksana Tuberkulosis", year:"2019", url:"https://www.idai.or.id/wp-content/uploads/2022/08/pnpk%20tb%202019.pdf" },
+  { name:"Tata Laksana Otitis Media Supuratif Kronis (OMSK)", year:"2018", url:"https://www.idai.or.id/wp-content/uploads/2022/08/pnpk%20omsk%202018.pdf" },
+  { name:"Tata Laksana Asfiksia", year:"2019", url:"https://www.idai.or.id/wp-content/uploads/2022/08/pnpk%20asfiksia%202019.pdf" },
+  { name:"Resusitasi, Stabilisasi & Transpor Bayi BBLR", year:"2018", url:"https://www.idai.or.id/wp-content/uploads/2022/08/pnpk%20bblr%202018.pdf" },
+  { name:"Konsensus Nasional Pengelolaan Diabetes Tipe 1", year:"2015/2021", url:"https://www.idai.or.id/professional-resources/pedoman-konsensus/konsensus-nasional-pengelolaan-diabetes-tipe-1" },
+];
+
+const PNPK_PAID = [
+  { name:"Diagnosis dan Tata Laksana Sepsis pada Anak", year:"2016" },
+  { name:"Diagnosis dan Tata Laksana Hipotiroid Kongenital", year:"—" },
+];
+
+function renderPNPK(){
+  let html1 = '';
+  PNPK_AVAILABLE.forEach(p=>{
+    html1 += `<div class="pnpk-item">
+      <div>
+        <div class="pnpk-name">${p.name}</div>
+        <div class="pnpk-year">Tahun ${p.year}</div>
+      </div>
+      <a class="dl-btn" href="${p.url}" target="_blank" rel="noopener">⬇ Unduh</a>
+    </div>`;
+  });
+  document.getElementById('pnpkAvailable').innerHTML = html1;
+
+  let html2 = '';
+  PNPK_PAID.forEach(p=>{
+    html2 += `<div class="pnpk-item">
+      <div>
+        <div class="pnpk-name">${p.name}</div>
+        <div class="pnpk-year">Tahun ${p.year}</div>
+      </div>
+      <span class="dl-btn disabled">🔒 Berbayar</span>
+    </div>`;
+  });
+  document.getElementById('pnpkPaid').innerHTML = html2;
+}
+renderPNPK();
+
+/* ===== KONTAK DARURAT ===== */
+const CONTACTS = [
+  { name:"Hilal", numbers:[
+    { label:"Nomor 2", num:"081315217478" },
+    { label:"Ibu", num:"081315709323" },
+  ]},
+  { name:"Ara", numbers:[
+    { label:"", num:"081251760785" },
+  ]},
+  { name:"Erina", numbers:[
+    { label:"", num:"085974172539" },
+  ]},
+  { name:"Finanda", numbers:[
+    { label:"Suami Faris", num:"08996568811" },
+  ]},
+  { name:"Hafiidz", numbers:[
+    { label:"", num:"+62 878-3442-9111" },
+  ]},
+  { name:"Joko", numbers:[
+    { label:"Istri Wan Hesti", num:"081233338810" },
+    { label:"Nomor 2", num:"082155559891" },
+  ]},
+  { name:"Mega", numbers:[
+    { label:"", num:"085740605080" },
+    { label:"Suami Bayu", num:"08970689547" },
+  ]},
+  { name:"Rifqi", numbers:[
+    { label:"Istri Desi", num:"085353175123" },
+    { label:"HP 2", num:"081370719873" },
+  ]},
+  { name:"Syeli", numbers:[
+    { label:"HP 2", num:"087782996081" },
+    { label:"Suami Fuad", num:"085658950459" },
+  ]},
+  { name:"Tasya", numbers:[
+    { label:"", num:"081228694943" },
+  ]},
+];
+
+function toTelHref(num){
+  return 'tel:' + num.replace(/[^\d+]/g,'');
+}
+function toWaHref(num){
+  let n = num.replace(/[^\d]/g,'');
+  if(n.startsWith('0')) n = '62' + n.slice(1);
+  return 'https://wa.me/' + n;
+}
+
+function renderContacts(){
+  let html = '';
+  CONTACTS.forEach((c, i)=>{
+    html += `<div class="contact-item">
+      <div class="contact-top">
+        <div class="contact-name">${i+1}. ${c.name}</div>
+      </div>`;
+    c.numbers.forEach(n=>{
+      html += `<div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:6px">
+        <div class="contact-num">${n.label ? n.label + ': ' : ''}<a href="${toTelHref(n.num)}">${n.num}</a></div>
+        <div style="display:flex;gap:6px">
+          <a class="call-btn" href="${toTelHref(n.num)}">📞</a>
+          <a class="call-btn wa-btn" href="${toWaHref(n.num)}" target="_blank" rel="noopener">💬</a>
+        </div>
+      </div>`;
+    });
+    html += `</div>`;
+  });
+  document.getElementById('contactArea').innerHTML = html;
+}
+renderContacts();
+
+/* ===== BIODATA ANGGOTA ===== */
+const BIODATA = [
+  { nick:"Hilal", fullname:"Muhammad Hilal Hasya", role:"Chief Angkatan", numbers:[{label:"Nomor 2",num:"081315217478"},{label:"Ibu",num:"081315709323"}],
+    extra:[
+      ["Tanggal Lahir","05 Februari 2000"],
+      ["Universitas","Universitas Sebelas Maret"],
+      ["Angkatan","2017"],
+      ["Alamat Asal","Jalan Aswawarman No. 7, RT 003 RW 001, Cibodas, Tangerang, Banten"],
+      ["Alamat di Solo","Kost Tirto Residence, Jalan Pracanda 7, Jebres, Surakarta"],
+      ["Status","Belum Menikah"],
+      ["Email","hasyahilal@gmail.com"],
+    ]},
+  { nick:"Ara", fullname:"Adelia Hanny Tiara", role:"Bendahara", numbers:[{label:"",num:"081251760785"}],
+    extra:[
+      ["Tanggal Lahir","20 Mei 1999"],
+      ["Universitas","Universitas Palangka Raya"],
+      ["Angkatan","2016"],
+      ["Alamat Asal","Komplek Gardu Mekar Indah, RT 014 RW 001, Banjarmasin Timur, Kalimantan Selatan"],
+      ["Alamat di Solo","Jalan Halilintar 1, RT 02 RW 10 No. 54, Jebres, Surakarta, Jawa Tengah"],
+      ["Status","Belum Menikah"],
+      ["Email","adeliatiaraa190@gmail.com"],
+    ]},
+  { nick:"Erina", fullname:"Erina Thursina Rusydi", role:"Ilmiah", numbers:[{label:"",num:"085974172539"}],
+    extra:[
+      ["Tanggal Lahir","10 Juli 1998"],
+      ["Universitas","Universitas Tadulako"],
+      ["Angkatan","2016"],
+      ["Alamat Asal","Perum Dosen Untad Blok B1-11, Kel. Tondo, Kec. Mantikulore, Kota Palu, Sulawesi Tengah"],
+      ["Alamat di Solo","Kost 689 Solo, Jl. Pracanda I, Jebres, Kota Surakarta, Jawa Tengah"],
+      ["Status","Belum Menikah"],
+      ["Email","erinathursinar@gmail.com"],
+    ]},
+  { nick:"Finan", fullname:"Finanda Nisa Amani", role:"IRT (Rumah Tangga)", numbers:[{label:"Suami Faris",num:"08996568811"}],
+    extra:[
+      ["Tanggal Lahir","13 Januari 1997"],
+      ["Universitas","Universitas Islam Indonesia"],
+      ["Angkatan","2015"],
+      ["Alamat Asal","Jalan Korma IV Blok i-1 No.9 Komplek Islamic Village, RT 05/RW 14, Kelapa Dua, Karawaci, Tangerang, Banten"],
+      ["Alamat di Solo","Solo Urbana Residence, Tower D, Kec. Jebres, Surakarta, Jawa Tengah"],
+      ["Status","Menikah — Suami: Faris Ali Fauzi, 1 anak"],
+      ["Email","finandanisa13@gmail.com"],
+    ]},
+  { nick:"Jojo", fullname:"Joko Herdianto", role:"Ilmiah", numbers:[{label:"Istri Wan Hesti",num:"081233338810"},{label:"Nomor 2",num:"082155559891"}],
+    extra:[
+      ["Tanggal Lahir","28 September 1991"],
+      ["Universitas","Universitas Tanjungpura Pontianak"],
+      ["Angkatan","2009"],
+      ["Alamat Asal","Jl. Kusuma Bangsa, Sedanau, Kec. Bunguran Barat, Kepulauan Natuna"],
+      ["Alamat di Solo","Solo Urbana Apartement, Mojo, Kec. Jebres, Kota Surakarta"],
+      ["Status","Menikah — Istri: Wan Hesti, 1 anak"],
+      ["Email","jokoherdianto70@gmail.com"],
+    ]},
+  { nick:"Hafiidz", fullname:"Hafiidz Fatich Rosihan", role:"IT", numbers:[{label:"",num:"+62 878-3442-9111"}],
+    extra:[
+      ["Tanggal Lahir","29 Desember 1997"],
+      ["Universitas","Universitas Muhammadiyah Yogyakarta"],
+      ["Angkatan","2013"],
+      ["Alamat Asal","Kaliurang, Yogyakarta"],
+      ["Alamat di Solo","Kos Putra Albarra, Jebres, Surakarta"],
+      ["Status","Menikah — Istri: Puput April Shangra Dewi, 3 anak"],
+      ["Email","hafiidzsmansapa@gmail.com"],
+    ]},
+  { nick:"Rifqi", fullname:"Mochamad Rifqie Nugraha Kamal", role:"IRT (Rumah Tangga)", numbers:[{label:"Istri Desi",num:"085353175123"},{label:"HP 2",num:"081370719873"}],
+    extra:[
+      ["Tanggal Lahir","12 April 1993"],
+      ["Universitas","Universitas Jenderal Soedirman"],
+      ["Angkatan","2012"],
+      ["Alamat Asal","Jl. Cipanas Galunggung RT/RW 01/01, Desa Tawangbanteng, Sukaratu, Kab. Tasikmalaya"],
+      ["Alamat di Solo","Jl. Pracanda 7, Jl. Kandang Sapi, RT.01/RW.32, Jebres, Kota Surakarta, Jawa Tengah 57126"],
+      ["Status","Menikah — Istri: Desi Tri Utami, 2 anak"],
+      ["Email","rifqinugraha.ppds@gmail.com"],
+    ]},
+  { nick:"Mega", fullname:"Megayani Santoso", role:"Sekretaris", numbers:[{label:"",num:"085740605080"},{label:"Suami Bayu",num:"08970689547"}],
+    extra:[
+      ["Tanggal Lahir","19 Agustus 1995"],
+      ["Universitas","Universitas Sebelas Maret"],
+      ["Angkatan","2014"],
+      ["Alamat Asal","Jl. Teratai I No.2 Pokoh RT 02/RW 02, Wonoboyo, Wonogiri"],
+      ["Alamat di Solo","Perum Gedongan Indah IV Blok E No. 5, Colomadu, Karanganyar"],
+      ["Status","Menikah — Suami: Bayu Dwi Permana, 1 anak"],
+      ["Email","megayani.santoso@gmail.com"],
+    ]},
+  { nick:"Syeli", fullname:"Syeli Santriawati", role:"Entertain", numbers:[{label:"HP 2",num:"087782996081"},{label:"Suami Fuad",num:"085658950459"}],
+    extra:[
+      ["Tanggal Lahir","09 Juli 1995"],
+      ["Universitas","Universitas Muhammadiyah Jakarta"],
+      ["Angkatan","2013"],
+      ["Alamat Asal","Jalan Karet Jaya Raya, Cadas Akong, RT 02/02, Kec. Sepatan, Kab. Tangerang"],
+      ["Alamat di Solo","Arum Kost Putri Premium, Jl. Pracanda, RT 02/30, Kel. Jebres, Kec. Jebres, Kota Surakarta"],
+      ["Status","Menikah — Suami: Fuad Dwi Putra, 1 anak"],
+      ["Email","syelisjaini@gmail.com"],
+    ]},
+  { nick:"Tasya", fullname:"Tasya Firzannisa Mawardi Putri", role:"Bendahara", numbers:[{label:"",num:"081228694943"}],
+    extra:[
+      ["Tanggal Lahir","6 Januari 1998"],
+      ["Universitas","Universitas Sebelas Maret"],
+      ["Angkatan","2016"],
+      ["Alamat Asal","Jl. Puri Utara I No. 3, RT 03 RW 05, Puri Mondoteko, Rembang, Jawa Tengah"],
+      ["Alamat di Solo","Arum Kost Putri, Jl. Pracanda, RT 03 RW 30, Jebres, Surakarta, Jawa Tengah"],
+      ["Status","Belum Menikah"],
+      ["Email","tasyafirzannisa98@gmail.com"],
+    ]},
+];
+
+function toggleBio(i){
+  const item = document.getElementById('bioItem'+i);
+  item.classList.toggle('open');
+}
+
+function renderBiodata(){
+  let html = '';
+  BIODATA.forEach((b, i)=>{
+    let detailRows = `
+      <div class="bio-row"><b>Nama Lengkap:</b> ${b.fullname}</div>
+      <div class="bio-row"><b>Peran:</b> ${b.role}</div>`;
+    b.numbers.forEach(n=>{
+      detailRows += `<div class="bio-row"><b>${n.label ? n.label : 'No. HP'}:</b> <a href="${toTelHref(n.num)}">${n.num}</a></div>`;
+    });
+    if(b.extra){
+      b.extra.forEach(([k,v])=>{
+        detailRows += `<div class="bio-row"><b>${k}:</b> ${v}</div>`;
+      });
+    }
+    html += `<div class="bio-item" id="bioItem${i}">
+      <div class="bio-head" onclick="toggleBio(${i})">
+        <div class="bio-head-left">
+          <div class="bio-num">${i+1}</div>
+          <div class="bio-nick">${b.nick}</div>
+        </div>
+        <div class="bio-chevron">▼</div>
+      </div>
+      <div class="bio-detail"><div class="bio-detail-in">${detailRows}</div></div>
+    </div>`;
+  });
+  document.getElementById('biodataArea').innerHTML = html;
+}
+renderBiodata();
+
+/* ===== PWA: SERVICE WORKER & AUTO-UPDATE ===== */
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').then((reg) => {
+      // Cek update setiap kali app dibuka & tiap 5 menit selama app terbuka
+      reg.update();
+      setInterval(() => reg.update(), 5 * 60 * 1000);
+
+      // Jika ada worker baru sedang menunggu, langsung aktifkan
+      if (reg.waiting) {
+        reg.waiting.postMessage('SKIP_WAITING');
+      }
+
+      reg.addEventListener('updatefound', () => {
+        const newWorker = reg.installing;
+        if (!newWorker) return;
+        newWorker.addEventListener('statechange', () => {
+          if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+            // Versi baru sudah siap — aktifkan otomatis
+            newWorker.postMessage('SKIP_WAITING');
+          }
+        });
+      });
+    }).catch((err) => console.error('SW registration failed:', err));
+
+    // Begitu service worker baru mengambil alih kontrol, reload otomatis
+    // agar konten terbaru (index.html baru) langsung tampil ke pengguna.
+    let refreshing = false;
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      if (refreshing) return;
+      refreshing = true;
+      window.location.reload();
+    });
+  });
+}
 </script>
 </body>
 </html>
