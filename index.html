@@ -32,11 +32,23 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--tx);mi
 .drive-btn{display:inline-flex;align-items:center;gap:5px;margin-top:5px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);color:#fff;font-family:'DM Sans',sans-serif;font-size:.66rem;font-weight:600;padding:4px 10px;border-radius:20px;text-decoration:none;transition:background .2s}
 .drive-btn:hover{background:rgba(255,255,255,.26)}
 .badge{background:var(--gold);color:#fff;font-size:.62rem;font-weight:600;padding:3px 8px;border-radius:20px;white-space:nowrap}
-.nav{background:var(--ml);display:flex;overflow-x:auto;scrollbar-width:none}
-.nav::-webkit-scrollbar{display:none}
-.nb{flex-shrink:0;background:transparent;border:none;color:rgba(255,255,255,.7);font-family:'DM Sans',sans-serif;font-size:.71rem;font-weight:500;padding:9px 11px;cursor:pointer;transition:all .2s;white-space:nowrap;border-bottom:3px solid transparent}
-.nb:hover{color:#fff;background:rgba(255,255,255,.08)}
-.nb.active{color:var(--gl);border-bottom-color:var(--gl);background:rgba(255,255,255,.1)}
+
+/* Nav tingkat 1: kategori */
+.nav-main{background:var(--ml);display:flex;overflow-x:auto;scrollbar-width:none}
+.nav-main::-webkit-scrollbar{display:none}
+.ncat{flex:1;min-width:64px;flex-shrink:0;background:transparent;border:none;color:rgba(255,255,255,.68);font-family:'DM Sans',sans-serif;font-size:.68rem;font-weight:600;padding:10px 6px 8px;cursor:pointer;transition:all .2s;white-space:nowrap;border-bottom:3px solid transparent;text-align:center}
+.ncat .ncat-icon{display:block;font-size:1rem;margin-bottom:2px}
+.ncat:hover{color:#fff;background:rgba(255,255,255,.08)}
+.ncat.active{color:var(--gl);border-bottom-color:var(--gl);background:rgba(255,255,255,.1)}
+
+/* Nav tingkat 2: sub-tab (muncul di bawah kategori terpilih) */
+.nav-sub{background:var(--m);display:flex;overflow-x:auto;scrollbar-width:none;border-top:1px solid rgba(255,255,255,.12)}
+.nav-sub::-webkit-scrollbar{display:none}
+.nav-sub.hidden{display:none}
+.nsub{flex-shrink:0;background:transparent;border:none;color:rgba(255,255,255,.6);font-family:'DM Sans',sans-serif;font-size:.68rem;font-weight:500;padding:8px 12px;cursor:pointer;transition:all .2s;white-space:nowrap;border-bottom:2px solid transparent}
+.nsub:hover{color:#fff}
+.nsub.active{color:var(--gold);border-bottom-color:var(--gold);font-weight:700}
+
 .main{max-width:960px;margin:0 auto;padding:16px 12px 60px}
 .sec{display:none;animation:fi .3s ease}
 .sec.active{display:block}
@@ -91,6 +103,22 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--tx);mi
 .dl-btn{flex-shrink:0;display:flex;align-items:center;gap:5px;background:var(--m);color:#fff;font-family:'DM Sans',sans-serif;font-size:.68rem;font-weight:600;padding:7px 13px;border-radius:20px;text-decoration:none;white-space:nowrap}
 .dl-btn:hover{background:var(--ml)}
 .dl-btn.disabled{background:var(--cd);color:var(--tm);pointer-events:none}
+.ir-filter{display:flex;gap:7px;overflow-x:auto;scrollbar-width:none;margin-bottom:12px}
+.ir-filter::-webkit-scrollbar{display:none}
+.ir-chip{flex-shrink:0;background:#fff;border:1.5px solid var(--cd);color:var(--tm);font-family:'DM Sans',sans-serif;font-size:.72rem;font-weight:600;padding:7px 14px;border-radius:20px;cursor:pointer;white-space:nowrap;transition:all .2s}
+.ir-chip.active{background:var(--m);border-color:var(--m);color:#fff}
+.senior-block{margin-bottom:14px}
+.senior-title{font-weight:700;font-size:.78rem;color:var(--m);background:var(--cream);padding:5px 9px;border-radius:6px;margin-bottom:4px}
+.senior-item{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;padding:7px 4px;border-bottom:1px solid var(--cd)}
+.senior-item:last-child{border-bottom:none}
+.senior-name{font-size:.78rem;font-weight:600;color:var(--tx)}
+.senior-full{font-size:.66rem;color:var(--tm)}
+.senior-note{font-size:.68rem;color:var(--tm);margin-top:2px;line-height:1.4}
+.senior-badge{flex-shrink:0;font-size:.62rem;font-weight:700;padding:3px 9px;border-radius:20px;white-space:nowrap;margin-top:1px}
+.senior-badge.wa{background:var(--grl);color:var(--gr)}
+.senior-badge.telp{background:var(--rl);color:#C0392B}
+.senior-badge.pending{background:#FFF3D8;color:var(--gold)}
+.senior-filter{display:flex;gap:7px;margin-bottom:12px}
 .contact-item{padding:10px 4px;border-bottom:1px solid var(--cd)}
 .contact-item:last-child{border-bottom:none}
 .contact-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
@@ -126,23 +154,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--tx);mi
     </div>
     <div class="badge">10 Orang</div>
   </div>
-  <div class="nav" id="navBar">
-    <button class="nb active" onclick="showSec('biodata',this)">👤 BioData</button>
-    <button class="nb" onclick="showSec('kuvs',this)">🎒 Perlengkapan</button>
-    <button class="nb" onclick="showSec('obat',this)">💊 Obat Pribadi</button>
-    <button class="nb" onclick="showSec('ringkasan',this)">✅ Checklist</button>
-    <button class="nb" onclick="showSec('sabtu18',this)">Sab 18 Jul</button>
-    <button class="nb" onclick="showSec('minggu19',this)">Min 19 Jul</button>
-    <button class="nb" onclick="showSec('selasa21',this)">Sel 21 Jul</button>
-    <button class="nb" onclick="showSec('jumat24',this)">Jum 24 Jul</button>
-    <button class="nb" onclick="showSec('pertemuan26',this)">Sab 26 Jul</button>
-    <button class="nb" onclick="showSec('rabu29jul',this)">Rab 29 Jul</button>
-    <button class="nb" onclick="showSec('angkatan',this)">List Angkatan</button>
-    <button class="nb" onclick="showSec('abyalis',this)">📷 Abyalis</button>
-    <button class="nb" onclick="showSec('ir',this)">📄 IR</button>
-    <button class="nb" onclick="showSec('pnpk',this)">📚 PNPK</button>
-    <button class="nb" onclick="showSec('kontak',this)">📞 Kontak Darurat</button>
-  </div>
+  <div class="nav-main" id="navMain"></div>
+  <div class="nav-sub" id="navSub"></div>
 </div>
 
 <div class="main">
@@ -568,8 +581,8 @@ Wassalamualaikum warahmatullahi wabarakatuh</div>
 </div>
 
 <!-- ===== RABU 29 JULI ===== -->
-<div class="sec" id="rabu29jul">
-  <p class="sl">Rabu, 29 Juli 2026</p>
+<div class="sec" id="journalreading">
+  <p class="sl">Tugas — Journal Reading</p>
 
   <div class="card">
     <div class="ctitle"><span class="icon">📖</span>Kewajiban Ilmiah — Jurnal Reading</div>
@@ -590,6 +603,10 @@ Wassalamualaikum warahmatullahi wabarakatuh</div>
       <li>Konsul senior sebaiknya langsung; jika senior stase lain yang dituju sedang sibuk, hubungi via WA dulu sebelum konsul langsung.</li>
     </ul>
   </div>
+</div>
+
+<div class="sec" id="sky">
+  <p class="sl">Tugas — SKY (Studi Kasus Junior)</p>
 
   <div class="card">
     <div class="ctitle"><span class="icon">🧾</span>SKY (Studi Kasus Junior)</div>
@@ -616,6 +633,10 @@ Wassalamualaikum warahmatullahi wabarakatuh</div>
       Setelah maju, tinggal menunggu nilai, revisi, atau tugas tambahan.
     </div>
   </div>
+</div>
+
+<div class="sec" id="cc">
+  <p class="sl">Tugas — CC (Case Conference)</p>
 
   <div class="card">
     <div class="ctitle"><span class="icon">🌙</span>CC (Case Conference) & Jadwal Jaga</div>
@@ -743,7 +764,300 @@ Wassalamualaikum warahmatullahi wabarakatuh</div>
 <div class="sec" id="ir">
   <p class="sl">IR — Invisible Rule (Template Redaksi)</p>
   <div class="hlb" style="margin-bottom:12px">Kumpulan template redaksi chat/lapor yang wajib diikuti. Tap tombol <strong>Copy</strong> untuk menyalin teks, lalu sesuaikan bagian data diri/tanggal sebelum dikirim.</div>
+  <div class="ir-filter" id="irFilter"></div>
   <div id="irArea"></div>
+</div>
+
+<!-- ===== ORIENTASI STASE — TKPS ===== -->
+<div class="sec" id="tkps">
+  <p class="sl">Orientasi Stase — TKPS</p>
+
+  <div class="hlb" style="margin-bottom:12px">📅 Setiap sesi orientasi baru untuk stase ini akan ditambahkan sebagai kartu tanggal baru di bawah — tab tidak akan bertambah.</div>
+
+  <div class="subhead" style="font-size:.8rem;margin-bottom:8px">Kamis, 30 Juli 2026</div>
+
+  <div class="card">
+    <div class="ctitle"><span class="icon">🏥</span>Gambaran Umum Stase TKPS</div>
+    <ul class="kl">
+      <li>Stase TKPS berada di absen ke-5, dikenal sebagai "stase surga dan seru" di PPDS IKA.</li>
+      <li>Datang sesuai kesepakatan, umumnya jam 05.00.</li>
+      <li>Pasien Pro CT Scan atau BERA paling sering datang hari Senin dan Kamis.</li>
+      <li>Follow up pasien dilakukan setiap pagi.</li>
+      <li>Jika sedang kosong pasien, bantu teman seangkatan yang stasenya sedang berat.</li>
+      <li>Setiap pagi wajib membuat: format harian, list pasien screening, list pasien rawat inap, dan list vaksin.</li>
+      <li>Setiap Senin wajib ikut APEL — terutama angkatan paling bawah, karena TKPS relatif santai sehingga masih bisa ikut apel.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="ctitle"><span class="icon">💉</span>Alur Vaksin Hep B0 (Bayi Baru Lahir)</div>
+    <ul class="kl">
+      <li>H-1: masuk ke grup chat stase TKPS-NEO untuk minta list pasien yang akan divaksin besok.</li>
+      <li>Jika ada pasien: datang pagi, ke pasien, buat video klinis bayi baru lahir di ruang Anyelir, HCU, atau NICU.</li>
+      <li>Video klinis: bayi harus dilepas bedongnya, durasi video minimal 10 detik.</li>
+      <li>Minta informed consent Hep 0 (akan dijelaskan lebih detail saat pradik) dan minta TTD orang tua pasien.</li>
+      <li>Kirim video ke madya — madya yang akan konsul ke SPV TKPS.</li>
+      <li>Jika ACC: resepkan vaksin Hep B0 lewat ERM, vaksin diambil di apotek IGD.</li>
+      <li>Alur pengambilan: ke NICU dulu untuk ambil box vaksin, baru ke apotek IGD.</li>
+      <li>Saat ambil vaksin harus mengisi data: nama bayi, NIK, alamat — diambil dari ERM dan KK.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="ctitle"><span class="icon">📋</span>Pasien Baru & Kelengkapan PASBAR</div>
+    <ul class="kl">
+      <li>Kelengkapan PASBAR mencakup kelengkapan khusus TKPS, contohnya lembar Denver sampai usia 6 tahun.</li>
+      <li>Pasien Pro CT Scan dan BERA biasanya pasien dengan pendengaran kurang atau ada keterlambatan perkembangan.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="ctitle"><span class="icon">📝</span>Pengisian Denver</div>
+    <ul class="kl">
+      <li>Dimulai dari mengisi tanggal periksa dan nama pemeriksa; data pasien memakai label pasien.</li>
+      <li>Tarik garis ke bawah sesuai usia pasien.</li>
+      <li>Cek 4 aspek perkembangan — tentukan apakah kena di garis hijau, pas di garis, atau tidak kena sama sekali.</li>
+      <li>Tanyakan keempat item tes sesuai posisi garis tersebut.</li>
+      <li>Jika kena di hijau, seharusnya anak sudah bisa melakukan item pemeriksaan itu; jika belum bisa, masih ada waktu untuk berlatih.</li>
+      <li>Jika gagal, mundur ke item pemeriksaan sebelumnya.</li>
+    </ul>
+    <div class="subhead">Kode Penilaian</div>
+    <div class="hl"><strong>P</strong> = Pass · <strong>N</strong> = Normal · <strong>F</strong> = Fail · <strong>C</strong> = Caution</div>
+    <div class="hlb">Contoh kesimpulan: 2 P, 1 F, 1 C → setara dengan perkembangan usia sekian bulan.</div>
+    <ul class="kl">
+      <li>Untuk usia di atas 6 tahun, gunakan kuesioner PSC-17 (bukan Denver).</li>
+      <li>Wajib menggali riwayat ke keluarga untuk menelusuri faktor risiko keterlambatan perkembangan.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="ctitle"><span class="icon">📚</span>Bimbingan & Ujian Stase</div>
+    <ul class="kl">
+      <li>Setiap Sabtu ada bimbingan jam 08.00–12.00.</li>
+      <li>Presentasi junior, madya, dan senior — semua tingkatan wajib saling bertanya, masing-masing sesi 5 menit.</li>
+    </ul>
+    <div class="subhead">Ujian (dr. Dewinda)</div>
+    <div class="hl">
+      Membuat video pemeriksaan Denver usia 1–3 tahun, tidak pakai infus, pasien yang mau pulang, minta izin ke keluarga dulu (kasus nefro dan kardio). Tidak perlu izin ke senior untuk ujian ini.<br><br>
+      Video dibuat 2x — minggu pertama dan minggu keempat. <strong>Tips:</strong> di minggu pertama langsung ambil video 2x sekaligus.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ctitle"><span class="icon">🏢</span>Kegiatan Poli</div>
+    <ul class="kl">
+      <li>Ikut kegiatan poli seperti biasa, termasuk mengukur lingkar kepala pasien.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===== JAGA — H-2 ===== -->
+<div class="sec" id="jagah2">
+  <p class="sl">Bab Jaga — Sub Bab Jaga H-2</p>
+
+  <div class="card">
+    <div class="ctitle"><span class="icon">🌙</span>Gambaran Umum Jaga</div>
+    <ul class="kl">
+      <li>Saat masih di masa awal, waktu masih banyak — manfaatkan untuk belajar sebanyak mungkin untuk masa setelah pengayaan.</li>
+      <li>Jaga dilaksanakan baik di hari weekday maupun weekend.</li>
+      <li>Saat jaga, jalankan program-program pasien stase yang belum selesai.</li>
+      <li>Jaga bawah adalah posisi jaga paling junior.</li>
+    </ul>
+    <div class="subhead">Urutan & Peran Jaga</div>
+    <div class="hlb">
+      Jaga 1: Supervisi (lapor ke SPV) · Jaga 2 & 3: IGD (yang maju podium) · Jaga 4: HCU Anak · Jaga 5: Kapten bangsal (Flamboyan 6, 9, bangsal luar) · Jaga 6: Tulip (kemoterapi) · Jaga 7: Bangsal luar negeri · Jaga 8: Jaga bawah (Flamboyan 9).
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ctitle"><span class="icon">📆</span>Jaga Weekday — Persiapan H-2</div>
+    <ul class="kl">
+      <li>Buat grup individu (WA) untuk menyimpan hal-hal penting terkait jaga.</li>
+      <li>Buat grup seangkatan untuk saling bantu CC (WhatsApp).</li>
+      <li>Buat link CC.</li>
+      <li>Menyiapkan list tim jaga.</li>
+      <li>Buat grup WA khusus koreksi tim jaga — untuk mengoreksi susunan tim jaga.</li>
+      <li>Konfirmasi jaga baik ke seangkatan maupun ke senior (via WA atau telepon).</li>
+      <li>Menyiapkan reng-rengan (perlengkapan) yang wajib ada.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="ctitle"><span class="icon">📢</span>Program Jaga & Grup</div>
+    <ul class="kl">
+      <li>Program jaga wajib dikirim ke grup jaga.</li>
+      <li>Grup jaga biasanya sudah dibuat oleh Jaga 1 — tinggal invite member jaga selanjutnya.</li>
+      <li>Program jaga di-share ke grup oleh Jaga Bawah.</li>
+      <li>Jaga bawah biasanya yang praktik/pasang NGT, kateter.</li>
+      <li>Lacak-lacak biasanya dikerjakan Jaga 7/8.</li>
+      <li>Kirim program ke koas, untuk pengawasan, GDS, dan Nebu.</li>
+    </ul>
+    <div class="subhead">Pembagian Bangsal</div>
+    <div class="hl"><strong>Dalam negeri:</strong> Flamboyan 9 &nbsp;·&nbsp; <strong>Luar negeri:</strong> Flamboyan 6, Cendana, Mawar, Tulip, Anyelir</div>
+    <div class="hlr">Kamar 906 dan 904 harus rebutan pediatric — KUVS dan Nebu harus dipegang PPDS, bukan koas.</div>
+  </div>
+
+  <div class="card">
+    <div class="ctitle"><span class="icon">💗</span>Grup PINK</div>
+    <ul class="kl">
+      <li>Grup PINK Bangsal — untuk memberi pengumuman hasil GDS bangsal yang sudah dikonsulkan ke grup Jaga.</li>
+      <li>PINK Pulang (di hari weekend) — memberi tahu status pasien stase, apakah BLPL atau belum.</li>
+      <li><strong>Tinggalan IGD:</strong> pasien yang masih di IGD namun sudah fix rawat inap (ranap).</li>
+      <li>Di-share setiap weekday karena pasien tersebut menjadi pasien stase.</li>
+      <li>Pasien tinggalan IGD wajib dilaporkan ke grup PINK.</li>
+      <li>Ada HP Jaga — dipakai untuk mencari nomor residen prodi lain untuk konsul atau raber.</li>
+      <li>Lakukan konfirmasi jaga sesuai alurnya.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="ctitle"><span class="icon">📋</span>Contoh Format Laporan Tim Jaga</div>
+    <div class="hlb" style="margin-bottom:8px">Template siap-copy untuk laporan ini juga tersedia di tab <strong>Referensi → IR</strong>.</div>
+    <div class="quote">Assalamu'alaikum Wr. Wb. Prof dan Dokter.
+
+Mohon izin melaporkan Tim Ahad Malam, 5 Juli 2026.
+
+Supervisor: dr. Andhika Trisna Putra, Sp.A, Subsp.Neo(K), M.Biomed
+
+Tim Jaga:
+1. dr. Fitriana Kusuma W.
+2. dr. Ulfa Puspita R.
+3. dr. Nur Amalia F.
+4. dr. Naili Nur S. N.
+5. dr. Peter Darmaatmaja S.
+6. dr. Garba Sandhi W. D.
+7. dr. Mochamad A. Ariesando
+8. dr. A. Lucky Ragil L.
+
+IGD :
+dr. Ulfa Puspita R.
+dr. Nur Amalia F.
+
+HCU Anak :
+dr. Naili Nur S. N.
+
+PICU :
+dr. Yulia Eka H.
+Marhaeni Adelaide P.
+
+NICU dan HCU Neo:
+dr. Muhammad Irfan
+dr. Floresya Kartika F.
+
+Terima kasih, Prof dan Dokter.
+
+Wassalamu'alaikum Wr. Wb.</div>
+  </div>
+</div>
+
+<!-- ===== JAGA — H-1 ===== -->
+<div class="sec" id="jagah1">
+  <p class="sl">Bab Jaga — Sub Bab Jaga H-1</p>
+
+  <div class="card">
+    <div class="ctitle"><span class="icon">📞</span>Konfirmasi Jaga — Aturan Umum</div>
+    <ul class="kl">
+      <li>Konfirmasi mulai dilakukan setelah CC — <strong>hanya di ruangan CC atau di depan ruang ilmiah.</strong></li>
+      <li>Kalau supervisor/senior sudah tidak ada di Anggrek 4 setelah CC, <strong>jangan konfirmasi</strong>.</li>
+      <li>Konfirmasi jaga dilakukan <strong>setelah ilmiah selesai</strong> — boleh langsung ngomong kalau kebetulan bertemu di ruang ilmiah.</li>
+      <li><strong>Perhatikan siapa yang dihubungi via apa</strong> — kirim listnya ke adik-adik (angkatan bawah).</li>
+      <li>Mulai konfirmasi dari Jaga 1, lalu berlanjut ke jaga berikutnya.</li>
+    </ul>
+    <div class="subhead">Rules Jika Tidak Diangkat Telepon</div>
+    <div class="hl">
+      Jika beliau ditelepon (wajib nomor seluler) dan tidak diangkat → ulangi 15 menit kemudian, sampai 3x tidak diangkat → ulangi lagi di menit ke-45 dengan telepon WA, ulangi sampai 3x dengan jarak 15 menit.<br><br>
+      Jika sampai tahap itu masih belum tersambung → kirim chat WA.<br><br>
+      Jika beliau ditelepon via seluler dan <em>langsung di-reject</em> → langsung WA dengan bunyi:
+    </div>
+    <div class="quote">"Mohon maaf Ibu saya tadi mencoba menghubungi namun belum tersambung"</div>
+  </div>
+
+  <div class="card">
+    <div class="ctitle"><span class="icon">💬</span>List Konfirmasi Jaga — Boleh via WA</div>
+    <div class="hlb" style="margin-bottom:8px">Berikut daftar senior yang boleh dikonfirmasi via WA (chat/telepon WA), lengkap dengan aturan khusus masing-masing jika ada.</div>
+    <ul class="kl">
+      <li>Bu Pupus</li>
+      <li>Bu Candrika</li>
+      <li>Pak Bima</li>
+      <li>Bu Rika</li>
+      <li>Bu Obi'</li>
+      <li>Bu Wanti</li>
+      <li>Pak Wegig — telepon WA boleh, atau WA saja juga tidak apa-apa, tapi diingatkan kalau belum dibalas.</li>
+      <li>Bu Zuma — telepon boleh, atau WA saja juga tidak apa-apa, tapi diingatkan kalau belum dibalas.</li>
+      <li>Bu Firda</li>
+      <li>Bu Sulfi</li>
+      <li>Bu Okta</li>
+      <li>Bu Linda</li>
+      <li>Bu Fitroh</li>
+      <li>Bu Bila</li>
+      <li>Bu Sena</li>
+      <li>Bu Alia</li>
+      <li>Pak Allief</li>
+      <li>Bu Agnes</li>
+      <li>Bu Naili</li>
+      <li>Bu Zenia</li>
+      <li>Bu Christi</li>
+      <li>Pak Peter</li>
+      <li>Bu Arsa — boleh WA/telepon/datangi langsung, yang penting tersampaikan.</li>
+      <li>Pak Fahmi — akan WA yang jaga; kalau tidak dibalas, WA saja.</li>
+      <li>Pak Torik — chat WA, tapi kalau >1 jam belum dibalas → telepon WA, jika tidak tersambung → telepon biasa.</li>
+      <li>Pak Muha — chat WA, tapi kalau >1 jam belum dibalas → telepon WA, jika tidak tersambung → telepon biasa.</li>
+      <li>Bu Amani — chat WA, tapi kalau >30 menit belum dibalas → telepon WA, jika tidak tersambung → telepon biasa.</li>
+      <li>Titah</li>
+      <li>Angraini</li>
+      <li>Arni</li>
+      <li>Intan</li>
+      <li>Alfan — kalau >30 menit tidak dibalas, telepon WA.</li>
+      <li>Jerman — WA saja; kalau >1 jam tidak respon, telepon WA; kalau tidak nyambung, telepon biasa.</li>
+      <li>Sasa — chat WA, tapi kalau >1 jam belum dibalas → telepon WA, jika tidak tersambung → telepon biasa.</li>
+      <li>Arina — chat WA, tapi kalau >1 jam belum dibalas → telepon WA, jika tidak tersambung → telepon biasa.</li>
+      <li>Lalang — telepon boleh, WA boleh; kalau WA >30 menit, telepon saja.</li>
+      <li>Ningrum — telepon/WA; jika tidak diangkat, boleh chat WA.</li>
+      <li>Ratu — chat WA; jika tidak dibalas, boleh telepon WA.</li>
+      <li>Garba — chat WA dan telepon, utamakan telepon WA/seluler; kalau bisa saat bertemu langsung lebih baik. Intinya harus tersampaikan bahwa yang bersangkutan terjadwal jaga.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="ctitle"><span class="icon">☎️</span>Nama yang Tidak Ada di List</div>
+    <ul class="kl">
+      <li>Jika nama tidak ada di list di atas, <strong>wajib telepon seluler</strong> (bukan WA).</li>
+      <li>Jika telepon direject, langsung lanjut chat WA.</li>
+      <li>Sambil menunggu konfirmasi dari Jaga 1, boleh langsung konfirmasi ke Jaga 2 dan seterusnya (tidak perlu menunggu urut selesai).</li>
+      <li>Setelah semua terkonfirmasi, list Jaga dikirim ke grup Residen Besar jam <strong>16.00–17.00</strong>.</li>
+      <li>Khusus jadwal jaga Sabtu, Ahad pagi, dan malam — dikirim ke grup Residen Anak UNS secara bersamaan.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="ctitle"><span class="icon">📋</span>Contoh IR Konfirmasi Jaga</div>
+    <div class="hlb" style="margin-bottom:8px">Template siap-copy juga tersedia di tab <strong>Referensi → IR</strong>.</div>
+    <div class="quote">Selamat siang Bu Wanti.
+
+Mohon izin, Saya Ragil, jaga bawah Selasa Malam, 16 Juni 2026.
+
+Izin konfirmasi jaga, Bu Wanti terjadwal jaga 1 pada Selasa Malam, 16 Juni 2026. Mohon arahannya Ibu.
+Terima kasih.
+
+Wassalamualaikum Warrahmatullahi Wabarakatuh.</div>
+  </div>
+</div>
+
+<!-- ===== IR JAGA ===== -->
+<div class="sec" id="irjaga">
+  <p class="sl">Bab Jaga — Sub Bab IR Jaga</p>
+  <div class="hlb" style="margin-bottom:12px">Kumpulan template redaksi khusus urusan jaga (operan, laporan, konfirmasi) — dikumpulkan di sini biar tidak perlu bolak-balik ke tab Referensi. Tap tombol <strong>Copy</strong> untuk menyalin teks.</div>
+  <div id="irJagaArea"></div>
+</div>
+
+<!-- ===== HUBUNGI SENIOR ===== -->
+<div class="sec" id="hubungisenior">
+  <p class="sl">Bab Jaga — Sub Bab Hubungi Senior</p>
+  <div class="hlb" style="margin-bottom:12px">Daftar cara menghubungi senior aktif untuk urusan jaga. Badge <strong>💬 WA</strong> = boleh dihubungi via WhatsApp (chat/telepon WA). Badge <strong>📞 Telepon</strong> = belum ada keterangan khusus, defaultnya wajib telepon seluler dulu (lihat aturan umum di tab Jaga H-1). Badge <strong>⏳ Menunggu Konfirmasi</strong> = khusus Angkatan Pak Abi, cara kontak belum ditentukan.</div>
+  <div class="senior-filter" id="seniorFilter"></div>
+  <div class="card">
+    <div id="seniorArea"></div>
+  </div>
 </div>
 
 <!-- ===== PNPK / REFERENSI ===== -->
@@ -773,12 +1087,100 @@ Wassalamualaikum warahmatullahi wabarakatuh</div>
 </div>
 
 <script>
-function showSec(id,el){
-  document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));
-  el.classList.add('active');
+/* ===== STRUKTUR NAVIGASI 2 TINGKAT ===== */
+// Tambah section notulensi baru cukup tambahkan 1 baris ke array "notulensi"
+// di bawah ini — nav utama TIDAK akan bertambah panjang.
+const NAV_CATEGORIES = [
+  { id:'info', icon:'👤', label:'Info', children:[
+      { id:'biodata', label:'BioData Anggota' },
+      { id:'angkatan', label:'List Angkatan' },
+      { id:'kontak', label:'Kontak Darurat' },
+  ]},
+  { id:'persiapan', icon:'🎒', label:'Persiapan', children:[
+      { id:'kuvs', label:'🎒 Perlengkapan' },
+      { id:'obat', label:'💊 Obat Pribadi' },
+      { id:'ringkasan', label:'✅ Checklist' },
+  ]},
+  { id:'notulensi', icon:'📝', label:'Notulensi', children:[
+      { id:'sabtu18', label:'Sab 18 Jul' },
+      { id:'minggu19', label:'Min 19 Jul' },
+      { id:'selasa21', label:'Sel 21 Jul' },
+      { id:'jumat24', label:'Jum 24 Jul' },
+      { id:'pertemuan26', label:'Sab 26 Jul' },
+      // ⬅ tambahkan notulensi baru di sini, contoh:
+      // { id:'seninXXjul', label:'Sen XX Jul' },
+  ]},
+  { id:'tugas', icon:'📚', label:'Tugas', children:[
+      { id:'journalreading', label:'Journal Reading' },
+      { id:'sky', label:'SKY' },
+      { id:'cc', label:'CC' },
+  ]},
+  { id:'referensi', icon:'📄', label:'Referensi', children:[
+      { id:'ir', label:'IR (Invisible Rule)' },
+      { id:'pnpk', label:'PNPK & Konsensus' },
+  ]},
+  { id:'stase', icon:'🏥', label:'Stase', children:[
+      { id:'tkps', label:'TKPS' },
+      // ⬅ tambahkan stase lain di sini, contoh:
+      // { id:'infeksi', label:'Infeksi' },
+  ]},
+  { id:'jaga', icon:'🌙', label:'Jaga', children:[
+      { id:'jagah2', label:'Jaga H-2' },
+      { id:'jagah1', label:'Jaga H-1' },
+      { id:'irjaga', label:'IR Jaga' },
+      { id:'hubungisenior', label:'Hubungi Senior' },
+  ]},
+  { id:'galeri', icon:'📷', label:'Galeri', children:[
+      { id:'abyalis', label:'Foto Abyalis' },
+  ]},
+];
+
+let currentCat = 'info';
+
+function renderNavMain(){
+  const html = NAV_CATEGORIES.map(cat =>
+    `<button class="ncat ${cat.id===currentCat?'active':''}" onclick="selectCategory('${cat.id}')">
+      <span class="ncat-icon">${cat.icon}</span>${cat.label}
+    </button>`
+  ).join('');
+  document.getElementById('navMain').innerHTML = html;
 }
+
+function renderNavSub(activeChildId){
+  const cat = NAV_CATEGORIES.find(c => c.id === currentCat);
+  const subEl = document.getElementById('navSub');
+  if(!cat || cat.children.length <= 1){
+    subEl.classList.add('hidden');
+    subEl.innerHTML = '';
+    return;
+  }
+  subEl.classList.remove('hidden');
+  subEl.innerHTML = cat.children.map(ch =>
+    `<button class="nsub ${ch.id===activeChildId?'active':''}" onclick="showSec('${ch.id}')">${ch.label}</button>`
+  ).join('');
+}
+
+function selectCategory(catId){
+  currentCat = catId;
+  renderNavMain();
+  const cat = NAV_CATEGORIES.find(c => c.id === catId);
+  showSec(cat.children[0].id);
+}
+
+function showSec(id){
+  // Cari kategori yang memiliki child ini, supaya nav-main & nav-sub sinkron
+  const cat = NAV_CATEGORIES.find(c => c.children.some(ch => ch.id === id));
+  if(cat) currentCat = cat.id;
+  document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));
+  const target = document.getElementById(id);
+  if(target) target.classList.add('active');
+  renderNavMain();
+  renderNavSub(id);
+  document.querySelector('.main').scrollIntoView({behavior:'instant', block:'start'});
+}
+
+renderNavMain();
+renderNavSub('biodata');
 
 /* ===== CHECKLIST DATA ===== */
 const CHECKLIST_GROUPS = [
@@ -1113,7 +1515,7 @@ loadKuvs();
 
 /* ===== IR (INVISIBLE RULE) ===== */
 const IR_LIST = [
-  { icon:"🏥", title:"IR Ikutan Jaga Bangsal", text:
+  { icon:"🏥", title:"IR Ikutan Jaga Bangsal", group:"Umum", text:
 `Assalamualaikum Warahmatullah Wabarakatuh, Bu Elvira. Mohon maaf mengganggu waktunya Bu. Mohon izin memperkenalkan diri saya Yusak, PPDS IKA yang baru.
 
 Mohon izin menginformasikan bahwa saya terjadwal Jaga Ikutan Bangsal Hari Jumat, tanggal 30 Januari 2026 pukul 15.00 s.d 21.00.
@@ -1121,7 +1523,7 @@ Mohon izin menginformasikan bahwa saya terjadwal Jaga Ikutan Bangsal Hari Jumat,
 Mohon arahan dan bimbingan selalu nggih, Bu.
 Wassalamualaikum warahmatullahi wabarakatuh` },
 
-  { icon:"📋", title:"IR Laporan Jaga", text:
+  { icon:"📋", title:"IR Laporan Jaga", group:"Umum", text:
 `Assalamu'alaikum Wr. Wb. Prof dan Dokter.
 
 Mohon izin melaporkan Tim Jaga Senin, 27 Juli 2026.
@@ -1157,7 +1559,7 @@ Terima kasih, Prof dan Dokter.
 
 Wassalamu'alaikum Wr. Wb.` },
 
-  { icon:"🩺", title:"IR Orientasi", text:
+  { icon:"🩺", title:"IR Orientasi", group:"Umum", text:
 `Assalamualaikum Warahmatullah Wabarakatuh, Bu Lalang. Mohon maaf mengganggu waktunya Bu. Mohon izin memperkenalkan diri saya Yusak, PPDS IKA yang baru.
 
 Mohon izin menginformasikan bahwa saya terjadwal orientasi Infeksi Hari Selasa, tanggal 24 Februari pukul 07.00 s.d 15.00.
@@ -1165,7 +1567,7 @@ Mohon izin menginformasikan bahwa saya terjadwal orientasi Infeksi Hari Selasa, 
 Mohon arahan dan bimbingan selalu nggih, Bu.
 Wassalamualaikum warahmatullahi wabarakatuh` },
 
-  { icon:"👥", title:"IR Masuk Grup Residen", text:
+  { icon:"👥", title:"IR Masuk Grup Residen", group:"Umum", text:
 `Assalamualaikum wr wb.
 Selamat malam Pak, Bu, Izin untuk memperkenalkan diri, saya PPDS Ilmu Kesehatan Anak FK UNS yang baru.
 
@@ -1184,7 +1586,7 @@ Alamat Email: rifqinugraha.ppds@gmail.com
 Mohon bimbingannya nggih Prof, Dokter, terima kasih, mohon maaf mengganggu sebelumnya.
 Wassalamualaikum Wr. Wb.` },
 
-  { icon:"🏛️", title:"IR Masuk Grup Prodi", text:
+  { icon:"🏛️", title:"IR Masuk Grup Prodi", group:"Umum", text:
 `Assalamualaikum wr wb.
 Selamat malam Pak, Bu, Izin untuk memperkenalkan diri, saya PPDS Ilmu Kesehatan Anak FK UNS yang baru.
 
@@ -1203,21 +1605,21 @@ Alamat Email: rifqinugraha.ppds@gmail.com
 Mohon bimbingannya nggih Prof, Dokter, terima kasih, mohon maaf mengganggu sebelumnya.
 Wassalamualaikum Wr. Wb.` },
 
-  { icon:"🙏", title:"IR Berbuat Salah (Diri Sendiri)", text:
+  { icon:"🙏", title:"IR Berbuat Salah (Diri Sendiri)", group:"Umum", text:
 `Mohon maaf atas kekeliruan saya nggih Pak, terimakasih Pak atas koreksi dan masukannya. Izin saya perbaiki Pak. Mohon bimbingan dan arahannya selalu nggih Pak.` },
 
-  { icon:"🤝", title:"IR Berbuat Salah (Dilanjutkan Rekan Seangkatan)", text:
+  { icon:"🤝", title:"IR Berbuat Salah (Dilanjutkan Rekan Seangkatan)", group:"Umum", text:
 `Mohon maaf atas kekeliruan kami nggih Pak, izin kami perbaiki Pak. Mohon bimbingan dan arahannya selalu nggih Pak` },
 
-  { icon:"✅", title:"IR Cara Merespon yang Benar", text:
+  { icon:"✅", title:"IR Cara Merespon yang Benar", group:"Umum", text:
 `Nggih baik Pak, Bu. Mohon maaf atas kesalahan kami.
 Terima kasih atas saran dan koreksinya. Izin kami perbaiki kedepannya nggih.
 Mohon arahan dan bimbingannya selalu.` },
 
-  { icon:"↩️", title:"IR Menarik Pesan yang Salah Kirim", note:"Jika ada pesan yang salah kirim, langsung dihapus (tarik) terlebih dahulu, setelah itu kirim susulan permintaan maaf berikut.", text:
+  { icon:"↩️", title:"IR Menarik Pesan yang Salah Kirim", group:"Umum", note:"Jika ada pesan yang salah kirim, langsung dihapus (tarik) terlebih dahulu, setelah itu kirim susulan permintaan maaf berikut.", text:
 `Mohon maaf, Pak, Bu. Izin untuk menarik pesan. Mohon untuk arahannya nggih.` },
 
-  { icon:"🌴", title:"IR Laporan Jaga Saat Libur (Tidak Boleh Terputus)", note:"Saat hari libur, laporan Tim Jaga tetap wajib dikirim setiap hari — tidak boleh terputus meskipun sedang libur.", text:
+  { icon:"🌴", title:"IR Laporan Jaga Saat Libur (Tidak Boleh Terputus)", group:"Umum", note:"Saat hari libur, laporan Tim Jaga tetap wajib dikirim setiap hari — tidak boleh terputus meskipun sedang libur.", text:
 `Assalamu'alaikum Wr. Wb. Prof dan Dokter.
 
 Mohon izin melaporkan Tim Jaga Sabtu Malam, 25 Juli 2026.
@@ -1250,11 +1652,232 @@ dr. M. Mahmud Ansori
 Terima kasih, Prof dan Dokter.
 
 Wassalamu'alaikum Wr. Wb.` },
+
+  { icon:"🗒️", title:"IR List Tim Jaga (Template Kosong)", group:"Umum", note:"Template dasar untuk laporan tim jaga — tinggal ganti hari/tanggal, nama supervisor, dan susunan tim sesuai jadwal hari itu.", text:
+`Assalamu'alaikum Wr. Wb. Prof dan Dokter.
+
+Mohon izin melaporkan Tim Jaga [Hari], [Tanggal].
+
+Supervisor: dr. [Nama Supervisor], Sp.A
+
+Tim Jaga:
+1. dr. [Nama]
+2. dr. [Nama]
+3. dr. [Nama]
+4. dr. [Nama]
+5. dr. [Nama]
+6. dr. [Nama]
+7. dr. [Nama]
+8. dr. [Nama]
+
+IGD :
+dr. [Nama]
+dr. [Nama]
+
+HCU Anak :
+dr. [Nama]
+
+PICU :
+dr. [Nama]
+dr. [Nama]
+
+NICU dan HCU Neo:
+dr. [Nama]
+dr. [Nama]
+
+Terima kasih, Prof dan Dokter.
+
+Wassalamu'alaikum Wr. Wb.` },
+
+  { icon:"📞", title:"IR Konfirmasi Jaga", group:"Umum", note:"Dipakai untuk konfirmasi jadwal jaga langsung ke senior/SPV yang terjadwal — sesuaikan nama, jam jaga, dan tanggal.", text:
+`Selamat siang Bu Wanti.
+
+Mohon izin, Saya Ragil, jaga bawah Selasa Malam, 16 Juni 2026.
+
+Izin konfirmasi jaga, Bu Wanti terjadwal jaga 1 pada Selasa Malam, 16 Juni 2026. Mohon arahannya Ibu.
+Terima kasih.
+
+Wassalamualaikum Warrahmatullahi Wabarakatuh.` },
+
+  { icon:"🌙", title:"IR Operan Jaga (Program Jaga)", group:"Program Jaga", note:"Dikirim untuk operan program jaga ke tim jaga selanjutnya — lengkapi tiap bagian sesuai kondisi pasien per bangsal.", text:
+`Bismillahirohmanirohim, izin mengirimkan
+
+*Program Jaga Ahad Malam, 1 Juli 2026*
+
+*_🌞Pengawasan🌞_*
+*Flamboyan 9*
+
+*Flamboyan 6*
+
+*Tulip*
+
+
+*_Pasien Baru_*
+
+
+_*Toleransi Operasi*_ *reng, lapor, advice*_
+*Flamboyan 9*
+
+*Flamboyan 6*
+
+*Anggrek*
+
+*Cendana*
+
+*_Lapor_*
+*Flamboyan 9*
+
+*Flamboyan 6*
+
+*Tulip*
+
+*Pasbar*
+
+
+*_Lacak_*
+*Flamboyan 9*
+
+*Flamboyan 6*
+
+*Tulip*
+
+
+*_Lab / Penunjang lainnya_*
+*Flamboyan 9*
+
+
+*Flamboyan 6*
+
+*Tulip*
+
+*_GDS_*
+*Flamboyan 9*
+
+*Flamboyan 6*
+
+*Tulip*
+
+*_Nebu_*
+*Flamboyan 9*
+
+*Flamboyan 6*
+
+*Tulip*
+
+
+*_Tranfusi_*
+*Flamboyan 9*
+
+*Flamboyan 6*
+
+*Tulip*
+
+*_Chemoterapi_*
+*Tulip*
+
+
+*_Puasa_*
+*Flamboyan 9*
+
+*Flamboyan 6*
+
+*_BLPL_*
+*Flamboyan 9*
+
+*Flamboyan 6*
+
+*Tulip*
+
+*_Lain-lain_*
+*Flamboyan 9*
+
+*Flamboyan 6*
+
+*Tulip*
+
+Terima kasih` },
+
+  { icon:"🩺", title:"IR Program Jaga ke Koas", group:"Program Jaga", note:"Dikirim ke Dokter Muda (koas) yang bertugas — versi ringkas dari program jaga, fokus pasien baru, GDS, dan nebu.", text:
+`Bismillahirrahmannirrahim
+Selamat Malam Dokter Muda
+
+Program Jaga, ---- 2026
+
+*_🌞Pengawasan🌞_*
+
+_*Pasien baru*_
+
+*Flamboyan 9*
+
+*_GDS_*
+*Flamboyan 9*
+
+*Flamboyan 6*
+
+*Tulip*
+
+
+*_Nebu_*
+*Flamboyan 9*
+
+*Flamboyan 6*
+
+*Tulip*
+
+Terima kasih.` },
+
+  { icon:"🩸", title:"IR Laporan GDS Pagi", group:"Program Jaga", note:"Dikirim ke grup TS Residen Anak untuk melaporkan hasil GDS pagi per bangsal.", text:
+`YTH TS Residen Anak
+
+Mohon izin melampirkan hasil GDS pagi ini, 28 Juli 2026 :
+
+*_GDS_*
+*Flamboyan 6*
+611 C Fahrezi 127 mg/dl
+612 B Zunaira 74 mg/dl
+
+BTK. Ragil` },
+
+  { icon:"🏠", title:"IR Laporan Pasien Pulang", group:"Program Jaga", note:"Dikirim ke grup TS Residen Anak untuk melaporkan pasien yang pulang pada jam jaga.", text:
+`Yth. TS Residen Anak
+
+Mohon izin melaporkan pasien pulang pada jam jaga Jumat, 24 Juli 2026
+
+*Flamboyan 9*
+906 B Ahmad Lutfi / TKPS
+907 B Uwais / Nefro
+
+BTK. Ragil` },
+
+  { icon:"🚑", title:"IR Ketinggalan Jaga Residen", group:"Program Jaga", note:"Dikirim ke grup TS Residen Anak untuk melaporkan ada/tidaknya pasien tinggalan IGD.", text:
+`YTH TS Residen Anak
+
+Mohon izin melaporkan pasien tinggalan IGD
+
+_Tidak ada pasien tinggalan IGD_
+
+BTK. Ragil` },
 ];
+
+let currentIRGroup = 'Semua';
+
+function renderIRFilter(){
+  const groups = ['Semua', ...Array.from(new Set(IR_LIST.map(ir => ir.group || 'Umum')))];
+  document.getElementById('irFilter').innerHTML = groups.map(g =>
+    `<button class="ir-chip ${g===currentIRGroup?'active':''}" onclick="setIRGroup('${g}')">${g}</button>`
+  ).join('');
+}
+
+function setIRGroup(g){
+  currentIRGroup = g;
+  renderIRFilter();
+  renderIR();
+}
 
 function renderIR(){
   let html='';
   IR_LIST.forEach((ir, i)=>{
+    if(currentIRGroup !== 'Semua' && (ir.group || 'Umum') !== currentIRGroup) return;
     const noteHtml = ir.note ? `<div class="hlb" style="margin-bottom:8px">${ir.note}</div>` : '';
     html += `<div class="ir-card">
       <div class="ir-top">
@@ -1265,13 +1888,17 @@ function renderIR(){
       <div class="ir-body" id="irText${i}">${ir.text}</div>
     </div>`;
   });
-  document.getElementById('irArea').innerHTML = html;
+  document.getElementById('irArea').innerHTML = html || '<div class="hlb">Belum ada template di kategori ini.</div>';
 }
 
-function copyIR(i){
-  const text = IR_LIST[i].text;
+const COPY_REGISTRY = {};
+
+function copyByKey(key){
+  const text = COPY_REGISTRY[key];
+  if(text === undefined) return;
   const done = ()=>{
-    const btn = document.getElementById('cpBtn'+i);
+    const btn = document.getElementById('cpBtn_'+key);
+    if(!btn) return;
     const old = btn.innerHTML;
     btn.innerHTML = '✓ Tersalin';
     btn.classList.add('copied');
@@ -1282,6 +1909,12 @@ function copyIR(i){
   }else{
     fallbackCopy(text, done);
   }
+}
+
+// Alias lama tetap didukung (dipakai tombol IR di tab Referensi)
+function copyIR(i){
+  COPY_REGISTRY['ir-'+i] = IR_LIST[i].text;
+  copyByKey('ir-'+i);
 }
 
 function fallbackCopy(text, cb){
@@ -1297,7 +1930,200 @@ function fallbackCopy(text, cb){
   cb();
 }
 
+/* ===== SUB-TAB: IR JAGA (khusus, ambil dari IR_LIST) ===== */
+const JAGA_IR_TITLES = [
+  "IR Ikutan Jaga Bangsal",
+  "IR Laporan Jaga",
+  "IR Laporan Jaga Saat Libur (Tidak Boleh Terputus)",
+  "IR List Tim Jaga (Template Kosong)",
+  "IR Konfirmasi Jaga",
+];
+
+function renderIRJaga(){
+  const jagaItems = IR_LIST.filter(ir => (ir.group === 'Program Jaga') || JAGA_IR_TITLES.includes(ir.title));
+  let html = '';
+  jagaItems.forEach((ir, idx)=>{
+    const key = 'jaga-'+idx;
+    COPY_REGISTRY[key] = ir.text;
+    const noteHtml = ir.note ? `<div class="hlb" style="margin-bottom:8px">${ir.note}</div>` : '';
+    html += `<div class="ir-card">
+      <div class="ir-top">
+        <div class="ir-title"><span class="icon" style="width:22px;height:22px;font-size:.74rem">${ir.icon}</span>${ir.title}</div>
+        <button class="copy-btn" id="cpBtn_${key}" onclick="copyByKey('${key}')">📋 Copy</button>
+      </div>
+      ${noteHtml}
+      <div class="ir-body">${ir.text}</div>
+    </div>`;
+  });
+  document.getElementById('irJagaArea').innerHTML = html;
+}
+renderIRJaga();
+
+renderIRFilter();
 renderIR();
+
+/* ===== DATA KONTAK SENIOR ===== */
+const SENIOR_CONTACT = [
+  { angkatan:"Angkatan Pak Satrio", members:[
+    { name:"Bu Resi", fullname:"Ardhita Resiani", tag:"telp", note:"" },
+  ]},
+  { angkatan:"Angkatan Pak Aziz", members:[
+    { name:"Bu Wiwi", fullname:"Dewi Rahmita S.", tag:"telp", note:"" },
+    { name:"Bu Pupus", fullname:"Pupus Ledysta", tag:"wa", note:"" },
+  ]},
+  { angkatan:"Angkatan Pak Awan", members:[
+    { name:"Pak Awan", fullname:"Ardiriawan", tag:"telp", note:"" },
+    { name:"Bu Anjar", fullname:"Anjar Widarini", tag:"telp", note:"" },
+    { name:"Bu Clara", fullname:"Clara Kusuma S. H.", tag:"telp", note:"" },
+    { name:"Bu Tania", fullname:"Pritania P. Putri", tag:"telp", note:"" },
+    { name:"Bu Soraya", fullname:"Soraya Sahidha", tag:"telp", note:"" },
+    { name:"Bu Ulfa", fullname:"Ulfa Puspita R.", tag:"telp", note:"" },
+  ]},
+  { angkatan:"Angkatan Pak Bima", members:[
+    { name:"Pak Bima", fullname:"Norma M. Bimacahya", tag:"wa", note:"" },
+    { name:"Bu Fahma", fullname:"Aisyah U. Fahma", tag:"telp", note:"" },
+    { name:"Pak Brando", fullname:"Brando Wily", tag:"telp", note:"" },
+    { name:"Bu Dina", fullname:"Dina Luthfiyah", tag:"telp", note:"" },
+    { name:"Pak Fachru", fullname:"Fachru Riza A.", tag:"telp", note:"" },
+    { name:"Bu Faiza", fullname:"Faiza Ruby A. H.", tag:"telp", note:"" },
+    { name:"Bu Nana", fullname:"Fitriana Kusuma W", tag:"telp", note:"" },
+    { name:"Bu Wanti", fullname:"Ita Purwanti", tag:"wa", note:"" },
+    { name:"Bu Afifah", fullname:"Nur Afifah", tag:"telp", note:"" },
+    { name:"Bu Azmi", fullname:"Nurul Azmi", tag:"telp", note:"" },
+    { name:"Bu Obi", fullname:"Rabi'atul Adawiyah", tag:"wa", note:"" },
+    { name:"Bu Rika", fullname:"Rika Haeriyah", tag:"wa", note:"" },
+  ]},
+  { angkatan:"Angkatan Pak Nugra", members:[
+    { name:"Pak Nugra", fullname:"Hanif Nugra P.", tag:"telp", note:"" },
+    { name:"Bu Amel", fullname:"Amalia Puswitasari", tag:"telp", note:"" },
+    { name:"Bu Via", fullname:"Devi Amara", tag:"telp", note:"" },
+    { name:"Pak Brian", fullname:"Febrian Naranggi A.P.", tag:"telp", note:"" },
+    { name:"Bu Firda", fullname:"Firdausi W. Santosa", tag:"wa", note:"" },
+    { name:"Bu Iske", fullname:"Iske Lucia G.", tag:"telp", note:"" },
+    { name:"Bu Ratih", fullname:"Ratih Mega A.", tag:"telp", note:"" },
+    { name:"Bu Sulfi", fullname:"Sulfita Launda", tag:"wa", note:"" },
+    { name:"Pak Wegig", fullname:"Wegig Amanu", tag:"wa", note:"Telepon WA boleh, atau WA saja juga tidak apa-apa, tapi diingatkan kalau belum dibalas." },
+    { name:"Bu Zuma", fullname:"Wulan Zumaroh A.", tag:"wa", note:"Telepon boleh, atau WA saja juga tidak apa-apa, tapi diingatkan kalau belum dibalas." },
+    { name:"Pak Alan", fullname:"Yoga Malanda", tag:"telp", note:"" },
+    { name:"Bu Uli", fullname:"Yulia Eka H.", tag:"telp", note:"" },
+  ]},
+  { angkatan:"Angkatan Pak Allief", members:[
+    { name:"Pak Allief", fullname:"Allief Himamana", tag:"wa", note:"" },
+    { name:"Bu Sena", fullname:"Avicena Hafsah P.", tag:"wa", note:"" },
+    { name:"Bu Zahidah", fullname:"Fairuz Zahidah", tag:"telp", note:"" },
+    { name:"Bu Fitroh", fullname:"Fitroh Annisah", tag:"wa", note:"" },
+    { name:"Bu Laila", fullname:"Lisa Lailatannur", tag:"telp", note:"" },
+    { name:"Bu Bila", fullname:"Nabila Hafizah", tag:"wa", note:"" },
+    { name:"Pak Naufal", fullname:"Naufal Aria P.", tag:"telp", note:"" },
+    { name:"Bu Alia", fullname:"Nur Amalia F.", tag:"wa", note:"" },
+    { name:"Bu Linda", fullname:"Prita Malinda Y.", tag:"wa", note:"" },
+    { name:"Bu Okta", fullname:"Rika Oktania S.", tag:"wa", note:"" },
+    { name:"Bu Olga", fullname:"Savina A. Olga M", tag:"telp", note:"" },
+    { name:"Bu Sheila", fullname:"Sheila Prilia A.", tag:"telp", note:"" },
+  ]},
+  { angkatan:"Angkatan Bu Naili", members:[
+    { name:"Bu Agnes", fullname:"Agnes Yessy P.", tag:"wa", note:"" },
+    { name:"Bu Alin", fullname:"Alinda Bella F.", tag:"telp", note:"" },
+    { name:"Bu Arsa", fullname:"Dewi Sekarsari", tag:"wa", note:"Boleh WA/telepon/datangi langsung, yang penting tersampaikan." },
+    { name:"Pak Fahmi", fullname:"Fahmi Wahyu R.", tag:"wa", note:"Akan WA yang jaga; kalau tidak dibalas, WA saja." },
+    { name:"Pak Fuad", fullname:"Fuad Adi P.", tag:"telp", note:"" },
+    { name:"Bu Irna", fullname:"Irna Fiseba", tag:"telp", note:"" },
+    { name:"Bu Kharisma", fullname:"Kharismalita Amira", tag:"telp", note:"" },
+    { name:"Bu Naili", fullname:"Naili Nur S. N.", tag:"wa", note:"" },
+    { name:"Pak Peter", fullname:"Peter Darmaatmaja S.", tag:"wa", note:"" },
+    { name:"Pak Arian", fullname:"Rizky Arianto N.", tag:"telp", note:"" },
+    { name:"Bu Christi", fullname:"Srisabrina Christia", tag:"wa", note:"" },
+    { name:"Bu Zenia", fullname:"Zenia Purnama M.", tag:"wa", note:"" },
+  ]},
+  { angkatan:"Angkatan Pak Chandra", members:[
+    { name:"Pak Chandra", fullname:"Chandra", tag:"telp", note:"" },
+    { name:"Bu Amani", fullname:"Dewi Amani H.", tag:"wa", note:"Chat WA, tapi kalau >30 menit belum dibalas → telepon WA, jika tidak tersambung → telepon biasa." },
+    { name:"Bu Elvira", fullname:"Elvira Pratiwi", tag:"telp", note:"" },
+    { name:"Bu Angraini", fullname:"Endang Y. Angraini", tag:"wa", note:"" },
+    { name:"Bu Intan", fullname:"Intan Pratiwi", tag:"wa", note:"" },
+    { name:"Pak Muha", fullname:"Muhammad Irfan", tag:"wa", note:"Chat WA, tapi kalau >1 jam belum dibalas → telepon WA, jika tidak tersambung → telepon biasa." },
+    { name:"Bu Gita", fullname:"Nur I. Agita S.", tag:"telp", note:"" },
+    { name:"Bu Arni", fullname:"Riana Suwarni", tag:"wa", note:"" },
+    { name:"Pak Titah", fullname:"Titah Arief C. K.", tag:"wa", note:"" },
+    { name:"Pak Torik", fullname:"Torika Anggi P.", tag:"wa", note:"Chat WA, tapi kalau >1 jam belum dibalas → telepon WA, jika tidak tersambung → telepon biasa." },
+  ]},
+  { angkatan:"Angkatan Pak Jerman", members:[
+    { name:"Pak Alfan", fullname:"Alfan A.G. Sudarmanto", tag:"wa", note:"Kalau >30 menit tidak dibalas, telepon WA." },
+    { name:"Bu Lalang", fullname:"Anggraini Lalang B.", tag:"wa", note:"Telepon boleh, WA boleh; kalau WA >30 menit, telepon saja." },
+    { name:"Bu Arina", fullname:"Arina Aulia U.", tag:"wa", note:"Chat WA, tapi kalau >1 jam belum dibalas → telepon WA, jika tidak tersambung → telepon biasa." },
+    { name:"Bu Ningrum", fullname:"Eka F. S. Ningrum", tag:"wa", note:"Telepon/WA; jika tidak diangkat, boleh chat WA." },
+    { name:"Pak Garba", fullname:"Garba Sandhi W. D.", tag:"wa", note:"Chat WA dan telepon, utamakan telepon WA/seluler; kalau bisa saat bertemu langsung lebih baik." },
+    { name:"Pak Jerman", fullname:"Jermansyah DD. K.", tag:"wa", note:"WA saja; kalau >1 jam tidak respon, telepon WA; kalau tidak nyambung, telepon biasa." },
+    { name:"Pak Ari", fullname:"Mochamad A. Ariesando", tag:"telp", note:"" },
+    { name:"Bu Sasa", fullname:"Putri N. Basari", tag:"wa", note:"Chat WA, tapi kalau >1 jam belum dibalas → telepon WA, jika tidak tersambung → telepon biasa." },
+    { name:"Bu Ratu", fullname:"Ratu Hanny A.", tag:"wa", note:"Chat WA; jika tidak dibalas, boleh telepon WA." },
+    { name:"Pak Mahmud", fullname:"M. Mahmud Ansori", tag:"telp", note:"" },
+  ]},
+  { angkatan:"Angkatan Pak Abi", members:[
+    { name:"Bu Ainin", fullname:"Ainin Meisynthia S.", tag:"pending", note:"" },
+    { name:"Bu Ragil", fullname:"A. Lucky Ragil L.", tag:"pending", note:"" },
+    { name:"Pak Abi", fullname:"Bagus H. Abiyyu", tag:"pending", note:"" },
+    { name:"Pak Fahri", fullname:"Fahrireza Mahardhika", tag:"pending", note:"" },
+    { name:"Bu Flo", fullname:"Floresya Kartika F.", tag:"pending", note:"" },
+    { name:"Bu Adel", fullname:"Marhaeni Adelaide P.", tag:"pending", note:"" },
+    { name:"Pak Umam", fullname:"M. Firdian Umam", tag:"pending", note:"" },
+    { name:"Bu Daya", fullname:"Nurul Hidayah", tag:"pending", note:"" },
+    { name:"Pak Patrick", fullname:"Patrick L. Sahusilawane", tag:"pending", note:"" },
+    { name:"Pak Yusak", fullname:"Yusak Aditya S.", tag:"pending", note:"" },
+  ]},
+];
+
+let currentSeniorFilter = 'semua';
+
+function renderSeniorFilter(){
+  const filters = [
+    {id:'semua', label:'Semua'},
+    {id:'wa', label:'💬 Boleh WA'},
+    {id:'telp', label:'📞 Wajib Telepon'},
+    {id:'pending', label:'⏳ Menunggu Konfirmasi'},
+  ];
+  document.getElementById('seniorFilter').innerHTML = filters.map(f =>
+    `<button class="ir-chip ${f.id===currentSeniorFilter?'active':''}" onclick="setSeniorFilter('${f.id}')">${f.label}</button>`
+  ).join('');
+}
+
+function setSeniorFilter(f){
+  currentSeniorFilter = f;
+  renderSeniorFilter();
+  renderSenior();
+}
+
+function renderSenior(){
+  let html = '';
+  SENIOR_CONTACT.forEach(group => {
+    const filtered = currentSeniorFilter === 'semua' ? group.members : group.members.filter(m => m.tag === currentSeniorFilter);
+    if(filtered.length === 0) return;
+    html += `<div class="senior-block"><div class="senior-title">${group.angkatan}</div>`;
+    filtered.forEach(m => {
+      const badge = m.tag === 'wa' ? '<span class="senior-badge wa">💬 WA</span>'
+        : m.tag === 'pending' ? '<span class="senior-badge pending">⏳ Menunggu Konfirmasi</span>'
+        : '<span class="senior-badge telp">📞 Telepon</span>';
+      const noteHtml = m.note ? `<div class="senior-note">${m.note}</div>` : '';
+      html += `<div class="senior-item">
+        <div>
+          <div class="senior-name">${m.name}</div>
+          <div class="senior-full">${m.fullname}</div>
+          ${noteHtml}
+        </div>
+        ${badge}
+      </div>`;
+    });
+    html += `</div>`;
+  });
+  document.getElementById('seniorArea').innerHTML = html || '<div class="hlb">Tidak ada data untuk filter ini.</div>';
+}
+
+renderSeniorFilter();
+renderSenior();
+
+
+/* ===== SUB-TAB: HUBUNGI SENIOR ===== */
+
 
 /* ===== PNPK / REFERENSI ===== */
 const PNPK_AVAILABLE = [
