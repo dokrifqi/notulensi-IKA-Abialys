@@ -3,8 +3,12 @@
 // diambil dari server begitu ada koneksi internet. Cache hanya dipakai
 // sebagai fallback saat offline.
 
-const CACHE_NAME = 'notulensi-ppds-ika-v1';
-const OFFLINE_URLS = ['./index.html', './manifest.json', './icon-192.png', './icon-512.png'];
+const CACHE_NAME = 'notulensi-ppds-ika-v2';
+const OFFLINE_URLS = [
+  './index.html', './manifest.json', './icon-192.png', './icon-512.png',
+  './img/abyalis-1.jpg', './img/abyalis-2.jpg', './img/abyalis-3.jpg', './img/abyalis-4.jpg',
+  './img/jaga-list-tulisan-tangan.jpg', './img/jaga-list-pasien-flamboyan9.jpg', './img/jaga-grup-pasien-baru-wa.jpg',
+];
 
 // Install: cache aset dasar, langsung aktif tanpa menunggu tab lama ditutup
 self.addEventListener('install', (event) => {
