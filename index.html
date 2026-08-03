@@ -119,6 +119,16 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--tx);mi
 .senior-badge.telp{background:var(--rl);color:#C0392B}
 .senior-badge.pending{background:#FFF3D8;color:var(--gold)}
 .senior-filter{display:flex;gap:7px;margin-bottom:12px}
+.install-toggle{display:flex;gap:8px;margin-bottom:14px}
+.install-tab{flex:1;background:#fff;border:1.5px solid var(--cd);color:var(--tm);font-family:'DM Sans',sans-serif;font-size:.8rem;font-weight:700;padding:11px;border-radius:10px;cursor:pointer;text-align:center}
+.install-tab.active{background:var(--gr);border-color:var(--gr);color:#fff}
+.install-steps{display:none}
+.install-steps.active{display:block}
+.install-step{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--cd)}
+.install-step:last-child{border-bottom:none}
+.install-num{flex-shrink:0;width:26px;height:26px;border-radius:50%;background:var(--grl);color:var(--gr);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.78rem}
+.install-text{font-size:.8rem;line-height:1.6;color:var(--tx);padding-top:2px}
+.install-text b{color:var(--gr)}
 .contact-item{padding:10px 4px;border-bottom:1px solid var(--cd)}
 .contact-item:last-child{border-bottom:none}
 .contact-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
@@ -1060,6 +1070,44 @@ Wassalamualaikum Warrahmatullahi Wabarakatuh.</div>
   </div>
 </div>
 
+<!-- ===== INSTALL APP ===== -->
+<div class="sec" id="install">
+  <p class="sl">📲 Install ke Layar Utama</p>
+
+  <div class="hlb" style="margin-bottom:14px">Biar makin gampang dibuka tiap hari, tambahkan aplikasi ini ke layar utama HP kamu — jadi terasa seperti aplikasi asli, bisa dibuka tanpa browser.</div>
+
+  <div class="card">
+    <div class="install-toggle">
+      <button class="install-tab active" id="tabAndroid" onclick="showInstallTab('android')">🤖 Android</button>
+      <button class="install-tab" id="tabIos" onclick="showInstallTab('ios')">🍎 iPhone / iPad</button>
+    </div>
+
+    <div class="install-steps active" id="stepsAndroid">
+      <div class="install-step"><div class="install-num">1</div><div class="install-text">Buka aplikasi ini lewat <b>Chrome</b> (browser bawaan Android).</div></div>
+      <div class="install-step"><div class="install-num">2</div><div class="install-text">Tap ikon <b>titik tiga (⋮)</b> di pojok kanan atas layar.</div></div>
+      <div class="install-step"><div class="install-num">3</div><div class="install-text">Pilih <b>"Tambahkan ke Layar Utama"</b> (Add to Home screen) — atau kadang muncul otomatis sebagai pop-up <b>"Instal aplikasi"</b>.</div></div>
+      <div class="install-step"><div class="install-num">4</div><div class="install-text">Tap <b>"Tambahkan"</b> atau <b>"Instal"</b> untuk konfirmasi.</div></div>
+      <div class="install-step"><div class="install-num">5</div><div class="install-text">Selesai! Ikon aplikasi akan muncul di layar utama HP seperti aplikasi biasa. 🎉</div></div>
+    </div>
+
+    <div class="install-steps" id="stepsIos">
+      <div class="install-step"><div class="install-num">1</div><div class="install-text">Buka aplikasi ini lewat <b>Safari</b> (bukan Chrome — di iOS harus lewat Safari).</div></div>
+      <div class="install-step"><div class="install-num">2</div><div class="install-text">Tap ikon <b>Bagikan / Share</b> (kotak dengan panah ke atas) di bagian bawah layar.</div></div>
+      <div class="install-step"><div class="install-num">3</div><div class="install-text">Scroll ke bawah, pilih <b>"Tambah ke Layar Utama"</b> (Add to Home Screen).</div></div>
+      <div class="install-step"><div class="install-num">4</div><div class="install-text">Tap <b>"Tambah"</b> (Add) di pojok kanan atas.</div></div>
+      <div class="install-step"><div class="install-num">5</div><div class="install-text">Selesai! Ikon aplikasi akan muncul di layar utama seperti aplikasi biasa. 🎉</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ctitle"><span class="icon">🧑‍💻</span>Pembuat Aplikasi</div>
+    <div class="hl">
+      Dibuat oleh <strong>dr. Mochamad Rifqie N.K.</strong><br>
+      Aplikasi ini dirancang & dikembangkan untuk membantu onboarding, checklist persiapan, dan referensi notulensi Angkatan Pak Hilal.
+    </div>
+  </div>
+</div>
+
 <!-- ===== PNPK / REFERENSI ===== -->
 <div class="sec" id="pnpk">
   <p class="sl">PNPK & Konsensus IDAI — Referensi</p>
@@ -1095,6 +1143,7 @@ const NAV_CATEGORIES = [
       { id:'biodata', label:'BioData Anggota' },
       { id:'angkatan', label:'List Angkatan' },
       { id:'kontak', label:'Kontak Darurat' },
+      { id:'install', label:'Install App' },
   ]},
   { id:'persiapan', icon:'🎒', label:'Persiapan', children:[
       { id:'kuvs', label:'🎒 Perlengkapan' },
@@ -2120,6 +2169,14 @@ function renderSenior(){
 
 renderSeniorFilter();
 renderSenior();
+
+/* ===== INSTALL APP TOGGLE ===== */
+function showInstallTab(platform){
+  document.getElementById('tabAndroid').classList.toggle('active', platform === 'android');
+  document.getElementById('tabIos').classList.toggle('active', platform === 'ios');
+  document.getElementById('stepsAndroid').classList.toggle('active', platform === 'android');
+  document.getElementById('stepsIos').classList.toggle('active', platform === 'ios');
+}
 
 
 /* ===== SUB-TAB: HUBUNGI SENIOR ===== */
